@@ -5,13 +5,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="keywords" content="java8新特性, EvanZhou">
-    <meta name="description" content="stream流式APIstream 的思想是内部迭代，for-each是外部迭代。
+    <meta name="description" content="stream流式APIstream 的思想是内部迭代，for-each是外部迭代。流只能使用一次。
 stream 优势:
 
 并行 能充分利用多核
 能直观描述数据的操作，代码可读性更高
 
-创建流的方式//        1、创建stream的方式，通过Col">
+创建流的方式//        1、创建stream的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -461,14 +461,14 @@ stream 优势:
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.2k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    5 分
+                    7 分
                 </div>
                 
 				
@@ -484,7 +484,7 @@ stream 优势:
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="stream流式API"><a href="#stream流式API" class="headerlink" title="stream流式API"></a>stream流式API</h2><p>stream 的思想是内部迭代，for-each是外部迭代。</p>
+                <h2 id="stream流式API"><a href="#stream流式API" class="headerlink" title="stream流式API"></a>stream流式API</h2><p>stream 的思想是内部迭代，for-each是外部迭代。<br>流只能使用一次。</p>
 <p><em>stream 优势:</em></p>
 <ul>
 <li>并行 能充分利用多核</li>
@@ -509,36 +509,55 @@ stream 优势:
         <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
 <h3 id="流的中间操作和终端操作"><a href="#流的中间操作和终端操作" class="headerlink" title="流的中间操作和终端操作"></a>流的中间操作和终端操作</h3><p>中间操作：</p>
 <ul>
-<li>filter</li>
-<li>distinct</li>
-<li>skip</li>
-<li>limit</li>
-<li>map</li>
-<li>flatmap</li>
-<li>sorted<br>终端操作：</li>
-<li>anyMatch</li>
-<li>noneMatch</li>
-<li>allMatch</li>
-<li>findAny</li>
-<li>findFirst</li>
-<li>forEach</li>
-<li>collect</li>
-<li>reduce</li>
-<li>count<h3 id="原始类型流"><a href="#原始类型流" class="headerlink" title="原始类型流"></a>原始类型流</h3></li>
-<li>DoubleStream<br><code>DoubleStream mapToDouble(ToDoubleFunction&lt;? super T&gt; mapper);</code></li>
-<li>IntStream<br><code>IntStream mapToInt(ToIntFunction&lt;? super T&gt; mapper);</code></li>
-<li>LongStream<br><code>LongStream mapToLong(ToLongFunction&lt;? super T&gt; mapper);</code><h2 id="lambda-表达式"><a href="#lambda-表达式" class="headerlink" title="lambda 表达式"></a>lambda 表达式</h2>lambda表达式可以作为参数传递给方法或者是存储在变量中</li>
-</ul>
-<h2 id="复合lambda表达式"><a href="#复合lambda表达式" class="headerlink" title="复合lambda表达式"></a>复合lambda表达式</h2><h3 id="比较器复合"><a href="#比较器复合" class="headerlink" title="比较器复合"></a>比较器复合</h3><pre class=" language-java"><code class="language-java">  transactions<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span><span class="token punctuation">)</span> 等价于<span class="token comment" spellcheck="true">//transactions.stream().sorted(Comparator.comparing((transaction -> transaction.getValue())))</span></code></pre>
-<p>  逆序</p>
-<pre class=" language-java"><code class="language-java">  transactions<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
-<p>  比较器链</p>
+<li><p>filter</p>
+</li>
+<li><p>distinct</p>
+</li>
+<li><p>skip</p>
+</li>
+<li><p>limit</p>
+</li>
+<li><p>map</p>
+</li>
+<li><p>flatmap</p>
+</li>
+<li><p>sorted<br>终端操作：</p>
+</li>
+<li><p>anyMatch</p>
+</li>
+<li><p>noneMatch</p>
+</li>
+<li><p>allMatch</p>
+</li>
+<li><p>findAny</p>
+</li>
+<li><p>findFirst</p>
+</li>
+<li><p>forEach</p>
+</li>
+<li><p>collect</p>
+</li>
+<li><p>reduce</p>
+</li>
+<li><p>count</p>
+<h3 id="原始类型流"><a href="#原始类型流" class="headerlink" title="原始类型流"></a>原始类型流</h3></li>
+<li><p>DoubleStream<br><code>DoubleStream mapToDouble(ToDoubleFunction&lt;? super T&gt; mapper);</code></p>
+</li>
+<li><p>IntStream<br><code>IntStream mapToInt(ToIntFunction&lt;? super T&gt; mapper);</code></p>
+</li>
+<li><p>LongStream<br><code>LongStream mapToLong(ToLongFunction&lt;? super T&gt; mapper);</code></p>
+<h2 id="lambda-表达式"><a href="#lambda-表达式" class="headerlink" title="lambda 表达式"></a>lambda 表达式</h2><p>lambda表达式可以作为参数传递给方法或者是存储在变量中。<br>优势：简介，可读性好，正因为有了lambda表达式才有了jdk库里stream等流式API。<br>劣势：个人认为目前存在最大的问题就是，由于lambda表达式没有名字，报错简陋，不方便调试。<br><code>ps： 因此，调试起来只能采用打印日志的方式就行调试，stream api 提供了peek方法，可以在元素恢复运行之前插入一段操作。</code></p>
+<h2 id="复合lambda表达式"><a href="#复合lambda表达式" class="headerlink" title="复合lambda表达式"></a>复合lambda表达式</h2><h3 id="比较器复合"><a href="#比较器复合" class="headerlink" title="比较器复合"></a>比较器复合</h3><pre class=" language-java"><code class="language-java">transactions<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span><span class="token punctuation">)</span> 等价于<span class="token comment" spellcheck="true">//transactions.stream().sorted(Comparator.comparing((transaction -> transaction.getValue())))</span></code></pre>
+<p>逆序</p>
+<pre class=" language-java"><code class="language-java">transactions<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reversed</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span></code></pre>
+<p>比较器链</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 如果value一样 则比较year</span>
-            transactions<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span>
-                        <span class="token punctuation">.</span><span class="token function">thenComparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span>
-</code></pre>
+          transactions<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">sorted</span><span class="token punctuation">(</span>Comparator<span class="token punctuation">.</span><span class="token function">comparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span>
+                      <span class="token punctuation">.</span><span class="token function">thenComparing</span><span class="token punctuation">(</span>Transaction<span class="token operator">:</span><span class="token operator">:</span>getValue<span class="token punctuation">)</span><span class="token punctuation">)</span>
+              <span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>System<span class="token punctuation">.</span>out<span class="token operator">:</span><span class="token operator">:</span>println<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+</li>
+</ul>
 <h3 id="谓词复合"><a href="#谓词复合" class="headerlink" title="谓词复合"></a>谓词复合</h3><ul>
 <li>negate() 现有predicate对象的非</li>
 <li>and()</li>
@@ -548,8 +567,7 @@ stream 优势:
 Function<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> Integer<span class="token operator">></span> g <span class="token operator">=</span> x <span class="token operator">-</span><span class="token operator">></span> x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
 Function<span class="token operator">&lt;</span>Integer<span class="token punctuation">,</span> Integer<span class="token operator">></span> h <span class="token operator">=</span> f<span class="token punctuation">.</span><span class="token function">andThen</span><span class="token punctuation">(</span>g<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token keyword">int</span> result <span class="token operator">=</span> h<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//数学上等价于 g（f(x)）</span>
-<span class="token comment" spellcheck="true">//Function&lt;Integer, Integer> h = f.compose(g);  // 数学上等价于 g（f(x)）</span>
-</code></pre>
+<span class="token comment" spellcheck="true">//Function&lt;Integer, Integer> h = f.compose(g);  // 数学上等价于 g（f(x)）</span></code></pre>
 <h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2><p>定义：只定义一个抽象方法的接口，即使接口定义了很多默认方法。只要接口只定义了一个抽象方法，它就仍然是一个函数式接口。<br> 常见的函数式接口有：Runnable、Compator、Callable</p>
 <h2 id="方法引用"><a href="#方法引用" class="headerlink" title="方法引用"></a>方法引用</h2><p>定义：方法引用是lambda的快捷写法，以便于提高可读性<br>方法应用分类：<br>1、指向静态方法的方法引用</p>
 <pre class=" language-js"><code class="language-js">    Integer<span class="token punctuation">:</span><span class="token punctuation">:</span>parseInt 等价于 <span class="token punctuation">(</span>String str<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span>Integer<span class="token punctuation">.</span><span class="token function">parseInt</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span></code></pre>
@@ -605,7 +623,56 @@ Apple c3 <span class="token operator">=</span> c3<span class="token punctuation"
 <span class="token keyword">int</span> sum <span class="token operator">=</span> numbers<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> a <span class="token operator">+</span> b<span class="token punctuation">)</span></code></pre>
 <h4 id="求最大值最小值"><a href="#求最大值最小值" class="headerlink" title="求最大值最小值"></a>求最大值最小值</h4><pre class=" language-java"><code class="language-java">        List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> numbers <span class="token operator">=</span> Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         Optional<span class="token operator">&lt;</span>Integer<span class="token operator">></span> max <span class="token operator">=</span> numbers<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>Integer<span class="token operator">:</span><span class="token operator">:</span>max<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h3 id="收集器collect"><a href="#收集器collect" class="headerlink" title="收集器collect"></a>收集器collect</h3>
+<h3 id="收集器collect"><a href="#收集器collect" class="headerlink" title="收集器collect"></a>收集器collect</h3><h4 id="查找最大值最小值"><a href="#查找最大值最小值" class="headerlink" title="查找最大值最小值"></a>查找最大值最小值</h4><pre class=" language-java"><code class="language-java">List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> list <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token operator">&lt;</span><span class="token operator">></span><span class="token punctuation">(</span>Arrays<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">55</span><span class="token punctuation">,</span> <span class="token number">34</span><span class="token punctuation">,</span> <span class="token number">23</span><span class="token punctuation">,</span> <span class="token number">88</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Optional<span class="token operator">&lt;</span>Integer<span class="token operator">></span> max <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">maxBy</span><span class="token punctuation">(</span>Integer<span class="token operator">:</span><span class="token operator">:</span>max<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最大值:"</span><span class="token operator">+</span>max<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//最大值:100</span>
+
+        Optional<span class="token operator">&lt;</span>Integer<span class="token operator">></span> min <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">minBy</span><span class="token punctuation">(</span>Integer<span class="token operator">:</span><span class="token operator">:</span>compare<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"最小值："</span><span class="token operator">+</span>min<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//最小值：23</span></code></pre>
+<h4 id="求和"><a href="#求和" class="headerlink" title="求和"></a>求和</h4><pre class=" language-java"><code class="language-java">Integer sum <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">summingInt</span><span class="token punctuation">(</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token operator">-</span><span class="token operator">></span>num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"总和："</span><span class="token operator">+</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//总和：300</span></code></pre>
+<h4 id="求平均值"><a href="#求平均值" class="headerlink" title="求平均值"></a>求平均值</h4><pre class=" language-java"><code class="language-java">Double avg <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">averagingInt</span><span class="token punctuation">(</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">"平均值："</span><span class="token operator">+</span>avg<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//平均值：60.0</span></code></pre>
+<h4 id="连接字符串"><a href="#连接字符串" class="headerlink" title="连接字符串"></a>连接字符串</h4><pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//        连接字符串</span>
+        String joining1 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> num<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">joining</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        String joining2 <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> num<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">joining</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>joining1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//10055342388</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>joining2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//100,55,34,23,88</span></code></pre>
+<h4 id="Collectors-reducing"><a href="#Collectors-reducing" class="headerlink" title="Collectors.reducing()"></a>Collectors.reducing()</h4><p>上面的收集器都可以用reducing实现，但是可读性降低了。</p>
+<h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p>假设有一组学生成绩，按照优秀、一般、差进行分组。</p>
+<pre class=" language-java"><code class="language-java">  Map<span class="token operator">&lt;</span>GradeLevel<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> groups <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;</span> <span class="token number">60</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>BAD<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;</span> <span class="token number">80</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>JUST_SO_SO<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">></span> <span class="token number">80</span> <span class="token operator">&amp;&amp;</span> num <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>GOOD<span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>ILGEAL<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>groups<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//{BAD=[55, 34, 23], GOOD=[100, 88]}</span></code></pre>
+<h5 id="多级分组"><a href="#多级分组" class="headerlink" title="多级分组"></a>多级分组</h5><p>groupingBy(Function&lt;? super T, ? extends K&gt; classifier, Collector&lt;? super T, A, D&gt; downstream)<br>groupingBy的第二个参数接受Collector类型，因此可以传递分组收集器</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 男女生的成绩进行分组</span>
+        Map<span class="token operator">&lt;</span>Character<span class="token punctuation">,</span> Map<span class="token operator">&lt;</span>GradeLevel<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Stuent<span class="token operator">>>></span> map <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span>Stuent<span class="token operator">:</span><span class="token operator">:</span>getSex<span class="token punctuation">,</span> Collectors<span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>stu<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>stu<span class="token punctuation">.</span><span class="token function">getGrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">60</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>BAD<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stu<span class="token punctuation">.</span><span class="token function">getGrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;</span> <span class="token number">80</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>JUST_SO_SO<span class="token punctuation">;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>stu<span class="token punctuation">.</span><span class="token function">getGrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">></span> <span class="token number">80</span> <span class="token operator">&amp;&amp;</span> stu<span class="token punctuation">.</span><span class="token function">getGrade</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">)</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>GOOD<span class="token punctuation">;</span>
+            <span class="token keyword">else</span>
+                <span class="token keyword">return</span> GradeLevel<span class="token punctuation">.</span>ILGEAL<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h4 id="分区"><a href="#分区" class="headerlink" title="分区"></a>分区</h4><p>分区只是分组的特例而已<br>partitioningBy() 接受一个谓词，返回true 或者false</p>
+<pre class=" language-java"><code class="language-java">   Map<span class="token operator">&lt;</span>Boolean<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Stuent<span class="token operator">>></span> collect <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">partitioningBy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>stu<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token string">'女'</span> <span class="token operator">==</span> <span class="token punctuation">(</span>stu<span class="token punctuation">.</span><span class="token function">getSex</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+
             </div>
             <hr/>
 
@@ -903,13 +970,13 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            stream流式APIstream 的思想是内部迭代，for-each是外部迭代。
+                            stream流式APIstream 的思想是内部迭代，for-each是外部迭代。流只能使用一次。
 stream 优势:
 
 并行 能充分利用多核
 能直观描述数据的操作，代码可读性更高
 
-创建流的方式//        1、创建stream的方式，通过Col
+创建流的方式//        1、创建stream的
                         
                     </div>
                     <div class="publish-info">
@@ -1083,7 +1150,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">1.7k</span>&nbsp;字
+                class="white-color">2.2k</span>&nbsp;字
             
             
             
