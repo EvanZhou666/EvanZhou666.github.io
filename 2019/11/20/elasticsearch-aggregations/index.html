@@ -891,7 +891,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             // headingsOffset: -205,
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h2, h3, h4,h5'
         });
 
         // modify the toc link href to support Chinese.
@@ -903,7 +903,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h2, h3, h4,h5').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1007,8 +1007,8 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
                     var years = days * 365;
                     var today = new Date();
                     var startYear = "2019";
-                    var startMonth = "6";
-                    var startDate = "28";
+                    var startMonth = "11";
+                    var startDate = "15";
                     var startHour = "0";
                     var startMinute = "0";
                     var startSecond = "0";

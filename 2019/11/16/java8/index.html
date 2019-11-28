@@ -639,6 +639,9 @@ Apple c3 <span class="token operator">=</span> c3<span class="token punctuation"
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>joining1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//10055342388</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>joining2<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//100,55,34,23,88</span></code></pre>
 <h4 id="Collectors-reducing"><a href="#Collectors-reducing" class="headerlink" title="Collectors.reducing()"></a>Collectors.reducing()</h4><p>上面的收集器都可以用reducing实现，但是可读性降低了。</p>
+<h4 id="收集器转换"><a href="#收集器转换" class="headerlink" title="收集器转换"></a>收集器转换</h4><pre class=" language-java"><code class="language-java"> List<span class="token operator">&lt;</span>Integer<span class="token operator">></span> collect <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">collectingAndThen</span><span class="token punctuation">(</span>
+                Collectors<span class="token punctuation">.</span><span class="token function">toCollection</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token keyword">new</span> <span class="token class-name">TreeSet</span><span class="token operator">&lt;</span>Integer<span class="token operator">></span><span class="token punctuation">(</span>Integer<span class="token operator">:</span><span class="token operator">:</span>compareTo<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> ArrayList<span class="token operator">:</span><span class="token operator">:</span><span class="token keyword">new</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
 <h4 id="分组"><a href="#分组" class="headerlink" title="分组"></a>分组</h4><p>假设有一组学生成绩，按照优秀、一般、差进行分组。</p>
 <pre class=" language-java"><code class="language-java">  Map<span class="token operator">&lt;</span>GradeLevel<span class="token punctuation">,</span> List<span class="token operator">&lt;</span>Integer<span class="token operator">>></span> groups <span class="token operator">=</span> list<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">collect</span><span class="token punctuation">(</span>Collectors<span class="token punctuation">.</span><span class="token function">groupingBy</span><span class="token punctuation">(</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token punctuation">{</span>
             <span class="token keyword">if</span> <span class="token punctuation">(</span>num <span class="token operator">&lt;</span> <span class="token number">60</span><span class="token punctuation">)</span>
@@ -1061,7 +1064,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
             // headingsOffset: -205,
-            headingSelector: 'h2, h3, h4'
+            headingSelector: 'h2, h3, h4,h5'
         });
 
         // modify the toc link href to support Chinese.
@@ -1073,7 +1076,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h2, h3, h4,h5').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1177,8 +1180,8 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
                     var years = days * 365;
                     var today = new Date();
                     var startYear = "2019";
-                    var startMonth = "6";
-                    var startDate = "28";
+                    var startMonth = "11";
+                    var startDate = "15";
                     var startHour = "0";
                     var startMinute = "0";
                     var startSecond = "0";
