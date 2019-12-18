@@ -4,11 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="elasticsearch-aggregations, EvanZhou">
-    <meta name="description" content="指标聚合Metrics Aggregations指标聚合分为单值聚合和多值聚合。
-单值聚合只返回一个指标
-avg Aggregation求平均值
-Cardinality Aggregation求基数，统计某个字段有多少个不同值。该值只是近似">
+    <meta name="keywords" content="shiro基础, EvanZhou">
+    <meta name="description" content="shiro 架构
+
+Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； 
+Authorization: 权限验">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +16,7 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>elasticsearch-aggregations | EvanZhou</title>
+    <title>shiro基础 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,13 +306,13 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        elasticsearch-aggregations
+                        shiro基础
                     </div>
                 </div>
             </div>
@@ -424,8 +424,8 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/elasticsearch/">
-                                <span class="chip bg-color">elasticsearch</span>
+                            <a href="/tags/shiro/">
+                                <span class="chip bg-color">shiro</span>
                             </a>
                         
                     </div>
@@ -436,8 +436,8 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/elasticsearch/" class="post-category">
-                                elasticsearch
+                            <a href="/categories/shiro/" class="post-category">
+                                shiro
                             </a>
                         
                     </div>
@@ -449,7 +449,7 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-20
+                    2019-12-19
                 </div>
                 
 
@@ -458,14 +458,14 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    470
+                    901
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 				
@@ -481,22 +481,125 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="指标聚合Metrics-Aggregations"><a href="#指标聚合Metrics-Aggregations" class="headerlink" title="指标聚合Metrics Aggregations"></a>指标聚合Metrics Aggregations</h2><p>指标聚合分为单值聚合和多值聚合。</p>
-<h3 id="单值聚合"><a href="#单值聚合" class="headerlink" title="单值聚合"></a>单值聚合</h3><p>只返回一个指标</p>
-<h4 id="avg-Aggregation"><a href="#avg-Aggregation" class="headerlink" title="avg Aggregation"></a>avg Aggregation</h4><p>求平均值</p>
-<h4 id="Cardinality-Aggregation"><a href="#Cardinality-Aggregation" class="headerlink" title="Cardinality Aggregation"></a>Cardinality Aggregation</h4><p>求基数，统计某个字段有多少个不同值。该值只是近似值，非准确值。可以设置精确阈值大小，以牺牲内存为代价，在该值一下，尽可能的准确。默认值是3000，支持的最大值是40000</p>
-<h4 id="Max-Aggregation"><a href="#Max-Aggregation" class="headerlink" title="Max Aggregation"></a>Max Aggregation</h4><p>统计最大值</p>
-<h4 id="Min-Aggregation"><a href="#Min-Aggregation" class="headerlink" title="Min Aggregation"></a>Min Aggregation</h4><p>统计最小值    </p>
-<h4 id="Sum-Aggregation"><a href="#Sum-Aggregation" class="headerlink" title="Sum Aggregation"></a>Sum Aggregation</h4><p>累加某个数值类型字段的总值。</p>
-<h4 id="Value-Count-Aggregation"><a href="#Value-Count-Aggregation" class="headerlink" title="Value Count Aggregation"></a>Value Count Aggregation</h4><p>对其它聚合文档中提取的value值计数。通常和其它单值聚合器一起使用。例如，当计算平均值时，统计参与计算的平均值的个数</p>
-<h4 id="Top-Hits-Aggregation"><a href="#Top-Hits-Aggregation" class="headerlink" title="Top Hits Aggregation"></a>Top Hits Aggregation</h4><p>热门数据聚合<br>用于子聚合，统计每个bucket分组内的热门数据。</p>
+                <h1 id="shiro-架构"><a href="#shiro-架构" class="headerlink" title="shiro 架构"></a>shiro 架构</h1><p><img src="https://img-blog.csdnimg.cn/20191218075651708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro架构图"></p>
 <ul>
-<li>from - The offset from the first result you want to fetch.</li>
-<li>size - The maximum number of top matching hits to return per bucket. By default the top three matching hits are returned.</li>
-<li>sort - How the top matching hits should be sorted. By default the hits are sorted by the score of the main query.<h3 id="多值聚合"><a href="#多值聚合" class="headerlink" title="多值聚合"></a>多值聚合</h3>返回多个指标<h4 id="stats-Aggregation"><a href="#stats-Aggregation" class="headerlink" title="stats Aggregation"></a>stats Aggregation</h4>统计汇总，基于文档的某个值（可以是特定的数值型字段，也可以通过脚本计算而来），计算出一些统计信息（min、max、sum、count、avg5个值<h4 id="Extended-Stats-Aggregation"><a href="#Extended-Stats-Aggregation" class="headerlink" title="Extended Stats Aggregation"></a>Extended Stats Aggregation</h4>比stats多4个统计结果： 平方和、方差、标准差、平均值加/减两个标准差的区间<h2 id="Bucket-Aggregations桶聚合"><a href="#Bucket-Aggregations桶聚合" class="headerlink" title="Bucket Aggregations桶聚合"></a>Bucket Aggregations桶聚合</h2>将数据分组，每一组就是一个桶，类似与sql的group by 分组。<h3 id="Terms-Aggregation"><a href="#Terms-Aggregation" class="headerlink" title="Terms Aggregation"></a>Terms Aggregation</h3></li>
+<li>Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； </li>
+<li>Authorization: 权限验证，决定用户有什么样的访问权限。</li>
+<li>Session Management: 用户session管理，支持非 web环境以及EJB。</li>
+<li>Cryptography: 加密，保证数据安全性。</li>
+<li>Web Support：Web 支持，可以非常容易的集成到Web 环境</li>
+<li>Caching：缓存，例如，可缓存用户session，用户信息,拥有的角色，权限信息</li>
+<li>Concurrency：Shiro 支持多线程应用的并发验证，即如在一个线程中开启另一个线程，能 把权限自动传播过去</li>
+<li>Run As：允许一个用户假装为另一个用户（如果他们允许）的身份进行访问； </li>
+<li>Remember Me：记住我，这个是非常常见的功能，即一次登录后，下次再来的话不用登录了</li>
 </ul>
-<h3 id="Filters-Aggregation"><a href="#Filters-Aggregation" class="headerlink" title="Filters Aggregation"></a>Filters Aggregation</h3><h3 id="Filter-Aggregation"><a href="#Filter-Aggregation" class="headerlink" title="Filter Aggregation"></a>Filter Aggregation</h3><h3 id="Date-Histogram-Aggregation"><a href="#Date-Histogram-Aggregation" class="headerlink" title="Date Histogram Aggregation"></a>Date Histogram Aggregation</h3><h3 id="Histogram-Aggregation"><a href="#Histogram-Aggregation" class="headerlink" title="Histogram Aggregation"></a>Histogram Aggregation</h3><p>常用于直方图统计<br>ps：  如果要返回没有数据的空桶，设置extended_bounds，并且min_doc_count必须为0；</p>
-<h2 id="只返回聚合结果"><a href="#只返回聚合结果" class="headerlink" title="只返回聚合结果"></a>只返回聚合结果</h2><p>只返回聚合结果，不返回search查询结果会使我们的查询更加高效，只要设置查询size为0既可。</p>
+<h1 id="shiro-概述"><a href="#shiro-概述" class="headerlink" title="shiro 概述"></a>shiro 概述</h1><p><img src="https://img-blog.csdnimg.cn/20191218080347940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro外观图"></p>
+<ul>
+<li>Subject: 与当前应用程序交互的“用户”。“Subject”可以是一个人，但它也可以表示第三方服务，守护程序帐户，定时任务或类似的东西-基本上是当前与该软件交互的任何东西。Subject  只是一个接口，当与 SecurityManager交互时，会转换为具体的subject。</li>
+<li>SecurityManager:  SecurityManager shiro的核心，管理协调其内部组件，程序员一般不用理会，并且应用程序开发人员几乎所有时间都花在Subject API上。</li>
+<li>Realms: realm是你的应用和shiro之间桥梁，当需要执行身份验证（登录）和授权（访问控制）时，Shiro会从一个或多个为应用程序配置的realm中查找数据内容。<table>
+<thead>
+<tr>
+<th>xxx</th>
+<th>算算算</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>s</td>
+<td>ss</td>
+</tr>
+</tbody></table>
+</li>
+</ul>
+<h1 id="shiro中默认的过滤器"><a href="#shiro中默认的过滤器" class="headerlink" title="shiro中默认的过滤器"></a>shiro中默认的过滤器</h1><p>如下的拦截器 都在DefaultFilter 枚举类中有说明</p>
+<table>
+<thead>
+<tr>
+<th>过滤器名称</th>
+<th>过滤</th>
+<th>描述</th>
+<th>例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>anon</td>
+<td>AnonymousFilter</td>
+<td>不需要登录的路径</td>
+<td>/user/signup/** = anon</td>
+</tr>
+<tr>
+<td>authc</td>
+<td>FormAuthenticationFilter</td>
+<td>用户认证（登录）拦截器，如果验证不通过跳转到你配置的登录页面。主要属性：usernameParam：表单提交的用户名参数名  passwordParam:表单提交的密码参数名 loginUrl：登录页面地址 successUrl：登录成功后的跳转页面failureKeyAttribute 登录失败错误信息存储key</td>
+<td></td>
+</tr>
+<tr>
+<td>authcBasic</td>
+<td>BasicHttpAuthenticationFilter</td>
+<td>Basic Http 身份拦截器 主要属性：applicationName：弹出登录框显示的信息</td>
+<td></td>
+</tr>
+<tr>
+<td>logout</td>
+<td>LogoutFilter</td>
+<td>退出拦截器 主要属性：redirectUrl：退出成功后重定向的地址</td>
+<td></td>
+</tr>
+<tr>
+<td>noSessionCreation</td>
+<td>NoSessionCreationFilter</td>
+<td>阻止在请求期间创建新的会话，保证无状态。</td>
+<td></td>
+</tr>
+<tr>
+<td>perms</td>
+<td>PermissionsAuthorizationFilter</td>
+<td>权限授权拦截器，验证用户是否拥有权限</td>
+<td>例子：/user/** = perms[“user:create”]</td>
+</tr>
+<tr>
+<td>port</td>
+<td>PortFilter</td>
+<td>端口拦截器</td>
+<td></td>
+</tr>
+<tr>
+<td>rest</td>
+<td>HttpMethodPermissionFilter</td>
+<td>rest 风格拦截器，根据请求的HttpMethod[POST、GET、Delete]进行拦截</td>
+<td></td>
+</tr>
+<tr>
+<td>roles</td>
+<td>RolesAuthorizationFilter</td>
+<td>角色授权拦截器，验证用户是否拥有所选角色</td>
+<td></td>
+</tr>
+<tr>
+<td>ssl</td>
+<td>SslFilter</td>
+<td>ssl拦截器 只有请求协议是https的才能通过，否则自动跳转到https端口</td>
+<td></td>
+</tr>
+<tr>
+<td>user</td>
+<td>UserFilter</td>
+<td>用户拦截器，用户已经身份认证/记住我的登录的都可以拦截</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>web环境下 默认过滤器初始化的地方 DefaultFilterChainManager</p>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">addDefaultFilters</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> init<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span>DefaultFilter defaultFilter <span class="token operator">:</span> DefaultFilter<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token function">addFilter</span><span class="token punctuation">(</span>defaultFilter<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> defaultFilter<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> init<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span></code></pre>
+<h1 id="shiro权限校验"><a href="#shiro权限校验" class="headerlink" title="shiro权限校验"></a>shiro权限校验</h1><ul>
+<li>使用perms 拦截器，对路径进行拦截，判断当前用户是否有权限</li>
+<li>使用shiro 注解的形式</li>
+<li>在页面使用shiro标签</li>
+</ul>
+<h1 id="shiro-依赖"><a href="#shiro-依赖" class="headerlink" title="shiro 依赖"></a>shiro 依赖</h1><p>非web环境下，仅需要slf4j-api.jar和slf4j的绑定.jars之一。Web配置还需要commons-beanutils-core.jar。可以在需要时添加基于功能的依赖项（Ehcache缓存，基于Quartz的会话验证，Spring依赖项注入等）。</p>
 
             </div>
             <hr/>
@@ -522,7 +625,7 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2019/11/20/elasticsearch-aggregations/">http://evanzhou666.com/2019/11/20/elasticsearch-aggregations/</a>
+                    <a href="http://evanzhou666.com/2019/12/19/shiro-ji-chu/">http://evanzhou666.com/2019/12/19/shiro-ji-chu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -560,8 +663,8 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/elasticsearch/">
-                                    <span class="chip bg-color">elasticsearch</span>
+                                <a href="/tags/shiro/">
+                                    <span class="chip bg-color">shiro</span>
                                 </a>
                             
                         </div>
@@ -727,9 +830,10 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2019/12/19/shiro-ji-chu/">
                     <div class="card-image">
@@ -750,9 +854,9 @@ Authorization: 权限验
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -765,6 +869,7 @@ Authorization: 权限验
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -783,37 +888,34 @@ Authorization: 权限验
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/16/java8/">
+                <a href="/2019/11/20/elasticsearch-aggregations/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="java8新特性">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="elasticsearch-aggregations">
                         
-                        <span class="card-title">java8新特性</span>
+                        <span class="card-title">elasticsearch-aggregations</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            stream流式APIstream 的思想是内部迭代，for-each是外部迭代。流只能使用一次。
-stream 优势:
-
-并行 能充分利用多核
-能直观描述数据的操作，代码可读性更高
-
-创建流的方式//        1、创建stream的
+                            指标聚合Metrics Aggregations指标聚合分为单值聚合和多值聚合。
+单值聚合只返回一个指标
+avg Aggregation求平均值
+Cardinality Aggregation求基数，统计某个字段有多少个不同值。该值只是近似
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-20
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/" class="post-category">
-                                    java8新特性
+                            <a href="/categories/elasticsearch/" class="post-category">
+                                    elasticsearch
                                 </a>
                             
                             
@@ -823,8 +925,8 @@ stream 优势:
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/java8/">
-                        <span class="chip bg-color">java8</span>
+                    <a href="/tags/elasticsearch/">
+                        <span class="chip bg-color">elasticsearch</span>
                     </a>
                     
                 </div>
