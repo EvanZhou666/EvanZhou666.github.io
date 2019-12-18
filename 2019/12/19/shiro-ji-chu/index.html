@@ -458,7 +458,7 @@ Authorization: 权限验">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    901
+                    1k
                 </div>
                 
 
@@ -481,7 +481,7 @@ Authorization: 权限验">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="shiro-架构"><a href="#shiro-架构" class="headerlink" title="shiro 架构"></a>shiro 架构</h1><p><img src="https://img-blog.csdnimg.cn/20191218075651708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro架构图"></p>
+                <h2 id="shiro-架构"><a href="#shiro-架构" class="headerlink" title="shiro 架构"></a>shiro 架构</h2><p><img src="https://img-blog.csdnimg.cn/20191218075651708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro架构图"></p>
 <ul>
 <li>Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； </li>
 <li>Authorization: 权限验证，决定用户有什么样的访问权限。</li>
@@ -493,7 +493,7 @@ Authorization: 权限验">
 <li>Run As：允许一个用户假装为另一个用户（如果他们允许）的身份进行访问； </li>
 <li>Remember Me：记住我，这个是非常常见的功能，即一次登录后，下次再来的话不用登录了</li>
 </ul>
-<h1 id="shiro-概述"><a href="#shiro-概述" class="headerlink" title="shiro 概述"></a>shiro 概述</h1><p><img src="https://img-blog.csdnimg.cn/20191218080347940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro外观图"></p>
+<h2 id="shiro-概述"><a href="#shiro-概述" class="headerlink" title="shiro 概述"></a>shiro 概述</h2><p><img src="https://img-blog.csdnimg.cn/20191218080347940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro外观图"></p>
 <ul>
 <li>Subject: 与当前应用程序交互的“用户”。“Subject”可以是一个人，但它也可以表示第三方服务，守护程序帐户，定时任务或类似的东西-基本上是当前与该软件交互的任何东西。Subject  只是一个接口，当与 SecurityManager交互时，会转换为具体的subject。</li>
 <li>SecurityManager:  SecurityManager shiro的核心，管理协调其内部组件，程序员一般不用理会，并且应用程序开发人员几乎所有时间都花在Subject API上。</li>
@@ -511,7 +511,7 @@ Authorization: 权限验">
 </tbody></table>
 </li>
 </ul>
-<h1 id="shiro中默认的过滤器"><a href="#shiro中默认的过滤器" class="headerlink" title="shiro中默认的过滤器"></a>shiro中默认的过滤器</h1><p>如下的拦截器 都在DefaultFilter 枚举类中有说明</p>
+<h2 id="shiro中默认的过滤器"><a href="#shiro中默认的过滤器" class="headerlink" title="shiro中默认的过滤器"></a>shiro中默认的过滤器</h2><p>如下的拦截器 都在DefaultFilter 枚举类中有说明</p>
 <table>
 <thead>
 <tr>
@@ -594,11 +594,12 @@ Authorization: 权限验">
             <span class="token function">addFilter</span><span class="token punctuation">(</span>defaultFilter<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> defaultFilter<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> init<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span></code></pre>
-<h1 id="shiro权限校验"><a href="#shiro权限校验" class="headerlink" title="shiro权限校验"></a>shiro权限校验</h1><ul>
+<h2 id="shiro权限校验"><a href="#shiro权限校验" class="headerlink" title="shiro权限校验"></a>shiro权限校验</h2><ul>
 <li>使用perms 拦截器，对路径进行拦截，判断当前用户是否有权限</li>
 <li>使用shiro 注解的形式</li>
 <li>在页面使用shiro标签</li>
 </ul>
+<h2 id="shiro-permission-匹配规则"><a href="#shiro-permission-匹配规则" class="headerlink" title="shiro permission 匹配规则"></a>shiro permission 匹配规则</h2><p>– 这种情况通常会使用三个部件：域、操作、被付诸实施的实例。如：user:edit:manager<br>– 也可以使用通配符来定义，如：user:edit:<em>、user:</em>:<em>、user:</em>:manager<br>– 部分省略通配符：缺少的部件意味着用户可以访问所有与之匹配的值，比如：user:edit 等价于 user:edit :<em>、user 等价于 user:</em>:*<br>– 注意：通配符只能从字符串的结尾处省略部件，也就<br>是说 user:edit 并不等价于 user:*:edit</p>
 <h1 id="shiro-依赖"><a href="#shiro-依赖" class="headerlink" title="shiro 依赖"></a>shiro 依赖</h1><p>非web环境下，仅需要slf4j-api.jar和slf4j的绑定.jars之一。Web配置还需要commons-beanutils-core.jar。可以在需要时添加基于功能的依赖项（Ehcache缓存，基于Quartz的会话验证，Spring依赖项注入等）。</p>
 
             </div>
@@ -830,33 +831,29 @@ Authorization: 权限验">
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/12/19/shiro-ji-chu/">
+                <a href="/2019/12/19/web-ying-yong-ren-zheng-gai-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="shiro基础">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="web应用认证概述">
                         
-                        <span class="card-title">shiro基础</span>
+                        <span class="card-title">web应用认证概述</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            shiro 架构
-
-Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； 
-Authorization: 权限验
+                            1 常见的认证方式1.1 Http Basic Auth每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -869,7 +866,6 @@ Authorization: 权限验
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
@@ -1076,7 +1072,7 @@ code[class*="language-"], pre[class*="language-"] { white-space: pre !important;
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">3.2k</span>&nbsp;字
+                class="white-color">4.1k</span>&nbsp;字
             
             
             
