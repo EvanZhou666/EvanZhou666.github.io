@@ -4,11 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="elasticsearch-aggregations, EvanZhou">
-    <meta name="description" content="指标聚合Metrics Aggregations指标聚合分为单值聚合和多值聚合。
-单值聚合只返回一个指标
-avg Aggregation求平均值
-Cardinality Aggregation求基数，统计某个字段有多少个不同值。该值只是近似">
+    <meta name="keywords" content="整合shiro问题--数据库事务失效, EvanZhou">
+    <meta name="description" content="spring事务管理spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。spring事务管理介绍我之前写的还算比较详细：spring事务管理介绍
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +14,7 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>elasticsearch-aggregations | EvanZhou</title>
+    <title>整合shiro问题--数据库事务失效 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,13 +304,13 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        elasticsearch-aggregations
+                        整合shiro问题--数据库事务失效
                     </div>
                 </div>
             </div>
@@ -424,8 +422,12 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/elasticsearch/">
-                                <span class="chip bg-color">elasticsearch</span>
+                            <a href="/tags/shiro/">
+                                <span class="chip bg-color">shiro</span>
+                            </a>
+                        
+                            <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
+                                <span class="chip bg-color">spring事务</span>
                             </a>
                         
                     </div>
@@ -436,8 +438,8 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/elasticsearch/" class="post-category">
-                                elasticsearch
+                            <a href="/categories/shiro/" class="post-category">
+                                shiro
                             </a>
                         
                     </div>
@@ -449,7 +451,7 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-11-20
+                    2019-12-29
                 </div>
                 
 
@@ -458,14 +460,14 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    470
+                    601
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 				
@@ -481,22 +483,24 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="指标聚合Metrics-Aggregations"><a href="#指标聚合Metrics-Aggregations" class="headerlink" title="指标聚合Metrics Aggregations"></a>指标聚合Metrics Aggregations</h2><p>指标聚合分为单值聚合和多值聚合。</p>
-<h3 id="单值聚合"><a href="#单值聚合" class="headerlink" title="单值聚合"></a>单值聚合</h3><p>只返回一个指标</p>
-<h4 id="avg-Aggregation"><a href="#avg-Aggregation" class="headerlink" title="avg Aggregation"></a>avg Aggregation</h4><p>求平均值</p>
-<h4 id="Cardinality-Aggregation"><a href="#Cardinality-Aggregation" class="headerlink" title="Cardinality Aggregation"></a>Cardinality Aggregation</h4><p>求基数，统计某个字段有多少个不同值。该值只是近似值，非准确值。可以设置精确阈值大小，以牺牲内存为代价，在该值一下，尽可能的准确。默认值是3000，支持的最大值是40000</p>
-<h4 id="Max-Aggregation"><a href="#Max-Aggregation" class="headerlink" title="Max Aggregation"></a>Max Aggregation</h4><p>统计最大值</p>
-<h4 id="Min-Aggregation"><a href="#Min-Aggregation" class="headerlink" title="Min Aggregation"></a>Min Aggregation</h4><p>统计最小值    </p>
-<h4 id="Sum-Aggregation"><a href="#Sum-Aggregation" class="headerlink" title="Sum Aggregation"></a>Sum Aggregation</h4><p>累加某个数值类型字段的总值。</p>
-<h4 id="Value-Count-Aggregation"><a href="#Value-Count-Aggregation" class="headerlink" title="Value Count Aggregation"></a>Value Count Aggregation</h4><p>对其它聚合文档中提取的value值计数。通常和其它单值聚合器一起使用。例如，当计算平均值时，统计参与计算的平均值的个数</p>
-<h4 id="Top-Hits-Aggregation"><a href="#Top-Hits-Aggregation" class="headerlink" title="Top Hits Aggregation"></a>Top Hits Aggregation</h4><p>热门数据聚合<br>用于子聚合，统计每个bucket分组内的热门数据。</p>
-<ul>
-<li>from - The offset from the first result you want to fetch.</li>
-<li>size - The maximum number of top matching hits to return per bucket. By default the top three matching hits are returned.</li>
-<li>sort - How the top matching hits should be sorted. By default the hits are sorted by the score of the main query.<h3 id="多值聚合"><a href="#多值聚合" class="headerlink" title="多值聚合"></a>多值聚合</h3>返回多个指标<h4 id="stats-Aggregation"><a href="#stats-Aggregation" class="headerlink" title="stats Aggregation"></a>stats Aggregation</h4>统计汇总，基于文档的某个值（可以是特定的数值型字段，也可以通过脚本计算而来），计算出一些统计信息（min、max、sum、count、avg5个值<h4 id="Extended-Stats-Aggregation"><a href="#Extended-Stats-Aggregation" class="headerlink" title="Extended Stats Aggregation"></a>Extended Stats Aggregation</h4>比stats多4个统计结果： 平方和、方差、标准差、平均值加/减两个标准差的区间<h2 id="Bucket-Aggregations桶聚合"><a href="#Bucket-Aggregations桶聚合" class="headerlink" title="Bucket Aggregations桶聚合"></a>Bucket Aggregations桶聚合</h2>将数据分组，每一组就是一个桶，类似与sql的group by 分组。<h3 id="Terms-Aggregation"><a href="#Terms-Aggregation" class="headerlink" title="Terms Aggregation"></a>Terms Aggregation</h3></li>
+                <h2 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h2><p>spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。<br>spring事务管理介绍我之前写的还算比较详细：<a href="https://blog.csdn.net/qq_36719449/article/details/83614701" target="_blank" rel="noopener">spring事务管理介绍</a></p>
+<h2 id="spring事务失效的原因"><a href="#spring事务失效的原因" class="headerlink" title="spring事务失效的原因"></a>spring事务失效的原因</h2><ul>
+<li>没有开启事务 @EnableTransactionManagement （如果使用springboot会自动配置开启该注解，注册事务管理器和事务增强器）</li>
+<li>异常类型不对，spring事务默认只对RuntimeException进行回滚。</li>
+<li>只能在作用在public方法上（SpringAOP基于代理的局限性）</li>
+<li>子线程中无法使用事务，也就是你自己new出来的线程，异步执行的任务无法使用事务。</li>
+<li>通过this调用当前类的方法。因为this调用是真实对象，并不是通过代理对象调用。例如：如果是一个不带事务的方法调用该类的带事务的方法，直接通过this.xxx()调用，而不生成代理事务。</li>
+<li>…<br><strong>总结就是一句话：既然spring事务依赖于动态代理，那么事务能否失效，就开是否生成了代理对象。</strong></li>
 </ul>
-<h3 id="Filters-Aggregation"><a href="#Filters-Aggregation" class="headerlink" title="Filters Aggregation"></a>Filters Aggregation</h3><h3 id="Filter-Aggregation"><a href="#Filter-Aggregation" class="headerlink" title="Filter Aggregation"></a>Filter Aggregation</h3><h3 id="Date-Histogram-Aggregation"><a href="#Date-Histogram-Aggregation" class="headerlink" title="Date Histogram Aggregation"></a>Date Histogram Aggregation</h3><h3 id="Histogram-Aggregation"><a href="#Histogram-Aggregation" class="headerlink" title="Histogram Aggregation"></a>Histogram Aggregation</h3><p>常用于直方图统计<br>ps：  如果要返回没有数据的空桶，设置extended_bounds，并且min_doc_count必须为0；</p>
-<h2 id="只返回聚合结果"><a href="#只返回聚合结果" class="headerlink" title="只返回聚合结果"></a>只返回聚合结果</h2><p>只返回聚合结果，不返回search查询结果会使我们的查询更加高效，只要设置查询size为0既可。</p>
+<h2 id="springboot-整合shiro-事务失效了"><a href="#springboot-整合shiro-事务失效了" class="headerlink" title="springboot 整合shiro 事务失效了"></a>springboot 整合shiro 事务失效了</h2><p>如果你的项目整合了shiro，那么注意观察启动日志是否打印了类似于这样的语句：</p>
+<pre><code> Bean &#39;sysUser&#39; of type [com.sun.proxy.$Proxy87] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</code></pre><p>这句话的意思就是SysUser对象被提前初始化了，不会被spring后置处理器拦截处理，导致出现问题，例如不能够被自动代理。<br>如果你看明白了这句话，我想也大概明白了整合shiro时候为什么事务会失效了，因为spring事务依赖于AOP代理技术实现。</p>
+<p>整合Shiro时候，你在自定义的Realm中自动注入了UserService，UserService在这里被提前初始化了，所以事务失效了。</p>
+<p>具体原因：ShiroFilterFactoryBean实现了后置处理器接口，在加载bean后置处理器前会加载Configuration配置类，导致ShiroFactoryBean被初始化了，也就是在这里提前实例化了相关的bean。</p>
+<p>ShiroFilterFactoryBean -&gt; SecurityManager -&gt; Realm实现类 -&gt; UserService</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在自定义Realm的中注入UserService时候，使用懒加载@Lazy。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+    <span class="token annotation punctuation">@Lazy</span>
+    <span class="token keyword">private</span> SysUserService userService<span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -522,7 +526,7 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2019/11/20/elasticsearch-aggregations/">http://evanzhou666.com/2019/11/20/elasticsearch-aggregations/</a>
+                    <a href="http://evanzhou666.com/2019/12/29/springboot-zheng-he-shiro-wen-ti-shu-ju-ku-shi-wu-shi-xiao/">http://evanzhou666.com/2019/12/29/springboot-zheng-he-shiro-wen-ti-shu-ju-ku-shi-wu-shi-xiao/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -560,8 +564,12 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/elasticsearch/">
-                                    <span class="chip bg-color">elasticsearch</span>
+                                <a href="/tags/shiro/">
+                                    <span class="chip bg-color">shiro</span>
+                                </a>
+                            
+                                <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
+                                    <span class="chip bg-color">spring事务</span>
                                 </a>
                             
                         </div>
@@ -727,32 +735,85 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/12/19/shiro-ji-chu/">
+                <a href="/2019/12/29/springboot-zheng-he-shiro-wen-ti-shu-ju-ku-shi-wu-shi-xiao/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="shiro基础">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="整合shiro问题--数据库事务失效">
                         
-                        <span class="card-title">shiro基础</span>
+                        <span class="card-title">整合shiro问题--数据库事务失效</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            shiro 架构
+                            spring事务管理spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。spring事务管理介绍我之前写的还算比较详细：spring事务管理介绍
 
-Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； 
-Authorization: 权限验
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-29
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/shiro/" class="post-category">
+                                    shiro
+                                </a>
+                            
+                            
                         </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/shiro/">
+                        <span class="chip bg-color">shiro</span>
+                    </a>
+                    
+                    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
+                        <span class="chip bg-color">spring事务</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/12/19/web-ying-yong-ren-zheng-gai-shu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="web应用认证概述">
+                        
+                        <span class="card-title">web应用认证概述</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            1 常见的认证方式1.1 Http Basic Auth每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -770,61 +831,6 @@ Authorization: 权限验
                     
                     <a href="/tags/shiro/">
                         <span class="chip bg-color">shiro</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/11/16/java8/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="java8新特性">
-                        
-                        <span class="card-title">java8新特性</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            stream流式APIstream 的思想是内部迭代，for-each是外部迭代。流只能使用一次。
-stream 优势:
-
-并行 能充分利用多核
-能直观描述数据的操作，代码可读性更高
-
-创建流的方式//        1、创建stream的
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/java8%E6%96%B0%E7%89%B9%E6%80%A7/" class="post-category">
-                                    java8新特性
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/java8/">
-                        <span class="chip bg-color">java8</span>
                     </a>
                     
                 </div>
