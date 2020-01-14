@@ -4,8 +4,12 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="web应用认证概述, EvanZhou">
-    <meta name="description" content="1 常见的认证方式1.1 Http Basic Auth每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再">
+    <meta name="keywords" content="Guava使用（一）Strings扩展, EvanZhou">
+    <meta name="description" content="Joiner字符串连接
+// 跳过空值
+ String skipNulls = Joiner.on(&#34;,&#34;)
+                .skipNulls()
+                .join(&#34;张三&#34;, &#34;李四&#34;, &#34;王">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +17,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>web应用认证概述 | EvanZhou</title>
+    <title>Guava使用（一）Strings扩展 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,13 +307,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        web应用认证概述
+                        Guava使用（一）Strings扩展
                     </div>
                 </div>
             </div>
@@ -421,8 +425,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/shiro/">
-                                <span class="chip bg-color">shiro</span>
+                            <a href="/tags/Guava/">
+                                <span class="chip bg-color">Guava</span>
                             </a>
                         
                     </div>
@@ -433,8 +437,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/shiro/" class="post-category">
-                                shiro
+                            <a href="/categories/Guava/" class="post-category">
+                                Guava
                             </a>
                         
                     </div>
@@ -446,7 +450,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-19
+                    2020-01-14
                 </div>
                 
 
@@ -455,7 +459,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    800
+                    407
                 </div>
                 
 
@@ -478,24 +482,118 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-常见的认证方式"><a href="#1-常见的认证方式" class="headerlink" title="1 常见的认证方式"></a>1 常见的认证方式</h1><h2 id="1-1-Http-Basic-Auth"><a href="#1-1-Http-Basic-Auth" class="headerlink" title="1.1 Http Basic Auth"></a>1.1 Http Basic Auth</h2><p>每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再生产环境中避免使用。</p>
-<h2 id="1-2-Cookie-Auth"><a href="#1-2-Cookie-Auth" class="headerlink" title="1.2 Cookie Auth"></a>1.2 Cookie Auth</h2><p>Cookie认证机制就是为一次请求认证在服务端创建一个session对象，同时在客户端创建一个cookie对象，通过客户端提交的cookie对象与服务端的session对象匹配来实现状态的管理，默认的，当我们关闭浏览器的时候，cookie会被删除，但是可以通过修改cookie的过期时间在一定时间内有效。<br><strong>弊端</strong>：</p>
-<ul>
-<li>某些移动端可能不存在cookie（比如微信小程序）</li>
-<li>cookie存在跨域问题（在微服务之间端口不一样，或存在跨域问题。）<h2 id="1-3-OAuth"><a href="#1-3-OAuth" class="headerlink" title="1.3 OAuth"></a>1.3 OAuth</h2>OAuth（开放授权）是一个开放的授权标准，允许第三方应用访问在某一web服务器上存储的私密资源，而无需将用户名和密码提供给第三方软件。OAuth允许用户提供一个令牌，每一个令牌授权一个特定的第三方系统，通过这个令牌访问存在特定服务器上的资源。<br><img src="https://img-blog.csdnimg.cn/2019121519130361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="OAuth协议认证流程"><h2 id="1-4-Token-Auth"><a href="#1-4-Token-Auth" class="headerlink" title="1.4 Token Auth"></a>1.4 Token Auth</h2>Http Basic Auth的演化版本，每次请求服务端带上token标志，后台服务校验这个token是否合法，从而决定客户端是否可以访问后台资源。无状态</li>
+                <h1 id="Joiner"><a href="#Joiner" class="headerlink" title="Joiner"></a>Joiner</h1><p>字符串连接</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 跳过空值</span>
+ String skipNulls <span class="token operator">=</span> Joiner<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">skipNulls</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token string">"李四"</span><span class="token punctuation">,</span> <span class="token string">"王五"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>skipNulls<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//张三,李四,王五</span>
+
+        String useNUll <span class="token operator">=</span> Joiner
+                <span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">useForNull</span><span class="token punctuation">(</span><span class="token string">"null"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//空替换</span>
+                <span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span> <span class="token string">"李四"</span><span class="token punctuation">,</span> <span class="token string">"王五"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>useNUll<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//张三,null,李四,王五</span></code></pre>
+<h1 id="Splitter"><a href="#Splitter" class="headerlink" title="Splitter"></a>Splitter</h1><p>作用：字符串分隔<br>原因：JDK自带的split()函数，会默认忽略尾部的分隔符，StringTokenizer 会用五个空字符代替。</p>
+<pre class=" language-java"><code class="language-java"> String<span class="token punctuation">[</span><span class="token punctuation">]</span> split <span class="token operator">=</span> <span class="token string">",a,,b,"</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "", "a", "", "b"</span></code></pre>
+<pre class=" language-java"><code class="language-java">Iterable<span class="token operator">&lt;</span>String<span class="token operator">></span> split1 <span class="token operator">=</span> Splitter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">trimResults</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">omitEmptyStrings</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"foo,bar,,   qux"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>split1<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//[foo, bar, qux]</span></code></pre>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 任意字符进行拆分</span>
+Iterable<span class="token operator">&lt;</span>String<span class="token operator">></span> split1 <span class="token operator">=</span> Splitter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span>CharMatcher<span class="token punctuation">.</span><span class="token function">anyOf</span><span class="token punctuation">(</span><span class="token string">",;."</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">trimResults</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">omitEmptyStrings</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"foo,bar,,   qux;23.,s"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>作用</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Splitter.on(char)</td>
+<td></td>
+<td>Splitter.on(‘;’)</td>
+</tr>
+<tr>
+<td>Splitter.on(CharMatcher)</td>
+<td>以任意字符进行拆分</td>
+<td>Splitter.on(CharMatcher.BREAKING_WHITESPACE) Splitter.on(CharMatcher.anyOf(“;,.”))</td>
+</tr>
+<tr>
+<td>Splitter.on(String)</td>
+<td></td>
+<td>Splitter.on(“, “)</td>
+</tr>
+<tr>
+<td>Splitter.on(Pattern)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Splitter.onPattern(String)</td>
+<td></td>
+<td>Splitter.onPattern(“\r?\n”)</td>
+</tr>
+<tr>
+<td>Splitter.fixedLength(int)</td>
+<td></td>
+<td>Splitter.fixedLength(3)</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>omitEmptyStrings()</td>
+<td>Automatically omits empty strings from theresult.</td>
+<td>Splitter.on(‘,’).omitEmptyStrings().split(“a,,c,d”)returns “a”, “c”, “d”</td>
+</tr>
+<tr>
+<td>trimResults()</td>
+<td>Trims whitespace from the results; equivalent to trimResults(CharMatcher.WHITESPACE).</td>
+<td>Splitter.on(‘,’).trimResults().split(“a, b, c, d”) returns “a”, “b”, “c”, “d”</td>
+</tr>
+<tr>
+<td>trimResults(CharMatcher)</td>
+<td>Trims characters matching the specified CharMatcher from results.</td>
+<td>Splitter.on(‘,’).trimResults(CharMatcher.is(‘<em>‘)).split(“_a ,_b</em> ,c__”) returns “a “, “b_ “, “c”.</td>
+</tr>
+<tr>
+<td>limit(int)</td>
+<td>Stops splitting after the specified number of strings have beenreturned.</td>
+<td>Splitter.on(‘,’).limit(3).split(“a,b,c,d”) returns “a”, “b”, “c,d”</td>
+</tr>
+</tbody></table>
+<h2 id="其它split方法"><a href="#其它split方法" class="headerlink" title="其它split方法"></a>其它split方法</h2><ul>
+<li>splitToList</li>
+<li>splitToStream</li>
 </ul>
-<p><strong>基于Token Auth的好处</strong></p>
-<ul>
-<li>支持跨域访问：cookie不允许跨域访问，token不存在这个问题。一般将token信息设置在http请求头里</li>
-<li>无状态，服务端可自行扩展，token机制在服务端不需要存储session，因而无需解决session共享问题。</li>
-<li>更适合用CDN：跨域通过内容分发网络请求你服务端的所有资料，你的服务端只需要提供API即可</li>
-<li>去耦：不需要绑定一个特定的身份认证方案</li>
-<li>更适合原生应用：当你的客户端是一个原生平台（IOS,Android，Window8），cookie不被支持，你需要通过cookie容器解决</li>
-<li>CSRF： 因为不在依赖cookie，所以不需要考虑跨站请求伪造问题。</li>
-<li>可以做到标准化，例如jwt（json web token） </li>
-</ul>
-<h1 id="2-有状态服务和无状态服务"><a href="#2-有状态服务和无状态服务" class="headerlink" title="2 有状态服务和无状态服务"></a>2 有状态服务和无状态服务</h1><h2 id="2-1-有状态服务"><a href="#2-1-有状态服务" class="headerlink" title="2.1 有状态服务"></a>2.1 有状态服务</h2><p>有状态服务：服务端会存储请求上下文相关的数据，先后的请求可能是有关联的。例如，传统web应用中，使用session维护已登录用户的数据。客户端（浏览器）存储jsession数据，在提交请求后，找到次jsessionid 对应的session数据。虽然http是无状态的，但是借助session可以使http服务装换为有状态的。</p>
-<h2 id="2-2-无状态服务"><a href="#2-2-无状态服务" class="headerlink" title="2.2 无状态服务"></a>2.2 无状态服务</h2><p>无状态服务：本次请求不依赖于之前的请求，本次请求的数据全部包含在该次请求中。例如，基于token的验证方式，不需要sesession维持会话数据。</p>
+<h1 id="CharMatcher"><a href="#CharMatcher" class="headerlink" title="CharMatcher"></a>CharMatcher</h1><p>提供了字符串替换等操作<br> CharMatcher.is(‘a’).replaceFrom(“yaha”, “oo”) // return yoohoo<br> 如果要调用的字符串只有一个字符，最好直接使用 replaceFrom(CharSequence, char)</p>
+<h1 id="Charsets"><a href="#Charsets" class="headerlink" title="Charsets"></a>Charsets</h1><pre class=" language-java"><code class="language-java">    bytes <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h1 id="CaseFormat"><a href="#CaseFormat" class="headerlink" title="CaseFormat"></a>CaseFormat</h1><p>字符格式化</p>
+<pre class=" language-java"><code class="language-java">   <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testCaseFormat</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment" spellcheck="true">//       小驼峰 constantName</span>
+        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//        连接 constant-name</span>
+        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_HYPHEN<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//         constant_name</span>
+        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//           大驼峰 ConstantName</span>
+        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>UPPER_CAMEL<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment" spellcheck="true">//          CONSTANT_NAME</span>
+        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -521,7 +619,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2019/12/19/web-ying-yong-ren-zheng-gai-shu/">http://evanzhou666.com/2019/12/19/web-ying-yong-ren-zheng-gai-shu/</a>
+                    <a href="http://evanzhou666.com/2020/01/14/guava-shi-yong-yi-string-kuo-zhan/">http://evanzhou666.com/2020/01/14/guava-shi-yong-yi-string-kuo-zhan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -559,8 +657,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/shiro/">
-                                    <span class="chip bg-color">shiro</span>
+                                <a href="/tags/Guava/">
+                                    <span class="chip bg-color">Guava</span>
                                 </a>
                             
                         </div>
@@ -726,9 +824,64 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2020/01/14/guava-shi-yong-yi-string-kuo-zhan/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Guava使用（一）Strings扩展">
+                        
+                        <span class="card-title">Guava使用（一）Strings扩展</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            Joiner字符串连接
+// 跳过空值
+ String skipNulls = Joiner.on(",")
+                .skipNulls()
+                .join("张三", "李四", "王
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Guava/" class="post-category">
+                                    Guava
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Guava/">
+                        <span class="chip bg-color">Guava</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/2019/12/29/springboot-zheng-he-shiro-wen-ti-shu-ju-ku-shi-wu-shi-xiao/">
                     <div class="card-image">
@@ -747,9 +900,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-29
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -771,58 +924,6 @@
                     
                     <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
                         <span class="chip bg-color">spring事务</span>
-                    </a>
-                    
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2019/12/19/shiro-ji-chu/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="shiro基础">
-                        
-                        <span class="card-title">shiro基础</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            shiro 架构
-
-Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； 
-Authorization: 权限验
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/shiro/" class="post-category">
-                                    shiro
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/shiro/">
-                        <span class="chip bg-color">shiro</span>
                     </a>
                     
                 </div>
