@@ -482,7 +482,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Joiner"><a href="#Joiner" class="headerlink" title="Joiner"></a>Joiner</h1><p>字符串连接</p>
+                <h2 id="Joiner"><a href="#Joiner" class="headerlink" title="Joiner"></a>Joiner</h2><p>字符串连接</p>
 <pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 跳过空值</span>
  String skipNulls <span class="token operator">=</span> Joiner<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">skipNulls</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -494,7 +494,7 @@
                 <span class="token punctuation">.</span><span class="token function">useForNull</span><span class="token punctuation">(</span><span class="token string">"null"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//空替换</span>
                 <span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span> <span class="token string">"李四"</span><span class="token punctuation">,</span> <span class="token string">"王五"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
         System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>useNUll<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//张三,null,李四,王五</span></code></pre>
-<h1 id="Splitter"><a href="#Splitter" class="headerlink" title="Splitter"></a>Splitter</h1><p>作用：字符串分隔<br>原因：JDK自带的split()函数，会默认忽略尾部的分隔符，StringTokenizer 会用五个空字符代替。</p>
+<h2 id="Splitter"><a href="#Splitter" class="headerlink" title="Splitter"></a>Splitter</h2><p>作用：字符串分隔<br>原因：JDK自带的split()函数，会默认忽略尾部的分隔符，StringTokenizer 会用五个空字符代替。</p>
 <pre class=" language-java"><code class="language-java"> String<span class="token punctuation">[</span><span class="token punctuation">]</span> split <span class="token operator">=</span> <span class="token string">",a,,b,"</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "", "a", "", "b"</span></code></pre>
 <pre class=" language-java"><code class="language-java">Iterable<span class="token operator">&lt;</span>String<span class="token operator">></span> split1 <span class="token operator">=</span> Splitter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span>
                 <span class="token punctuation">.</span><span class="token function">trimResults</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
@@ -574,13 +574,13 @@ Iterable<span class="token operator">&lt;</span>String<span class="token operato
 <td>Splitter.on(‘,’).limit(3).split(“a,b,c,d”) returns “a”, “b”, “c,d”</td>
 </tr>
 </tbody></table>
-<h2 id="其它split方法"><a href="#其它split方法" class="headerlink" title="其它split方法"></a>其它split方法</h2><ul>
+<h3 id="其它split方法"><a href="#其它split方法" class="headerlink" title="其它split方法"></a>其它split方法</h3><ul>
 <li>splitToList</li>
 <li>splitToStream</li>
 </ul>
-<h1 id="CharMatcher"><a href="#CharMatcher" class="headerlink" title="CharMatcher"></a>CharMatcher</h1><p>提供了字符串替换等操作<br> CharMatcher.is(‘a’).replaceFrom(“yaha”, “oo”) // return yoohoo<br> 如果要调用的字符串只有一个字符，最好直接使用 replaceFrom(CharSequence, char)</p>
-<h1 id="Charsets"><a href="#Charsets" class="headerlink" title="Charsets"></a>Charsets</h1><pre class=" language-java"><code class="language-java">    bytes <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h1 id="CaseFormat"><a href="#CaseFormat" class="headerlink" title="CaseFormat"></a>CaseFormat</h1><p>字符格式化</p>
+<h2 id="CharMatcher"><a href="#CharMatcher" class="headerlink" title="CharMatcher"></a>CharMatcher</h2><p>提供了字符串替换等操作<br> CharMatcher.is(‘a’).replaceFrom(“yaha”, “oo”) // return yoohoo<br> 如果要调用的字符串只有一个字符，最好直接使用 replaceFrom(CharSequence, char)</p>
+<h2 id="Charsets"><a href="#Charsets" class="headerlink" title="Charsets"></a>Charsets</h2><pre class=" language-java"><code class="language-java">    bytes <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="CaseFormat"><a href="#CaseFormat" class="headerlink" title="CaseFormat"></a>CaseFormat</h2><p>字符格式化</p>
 <pre class=" language-java"><code class="language-java">   <span class="token annotation punctuation">@Test</span>
     <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testCaseFormat</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
  <span class="token comment" spellcheck="true">//       小驼峰 constantName</span>
