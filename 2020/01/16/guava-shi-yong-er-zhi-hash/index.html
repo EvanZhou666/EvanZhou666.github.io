@@ -4,8 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="web应用认证概述, EvanZhou">
-    <meta name="description" content="1 常见的认证方式1.1 Http Basic Auth每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再">
+    <meta name="keywords" content="Guava使用（二）哈希, EvanZhou">
+    <meta name="description" content="Guava包为什么要提供hashjava内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重在简单的散列表中可以通过再hash解决这个问题，但是gu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -13,7 +13,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>web应用认证概述 | EvanZhou</title>
+    <title>Guava使用（二）哈希 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -303,13 +303,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        web应用认证概述
+                        Guava使用（二）哈希
                     </div>
                 </div>
             </div>
@@ -421,8 +421,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/shiro/">
-                                <span class="chip bg-color">shiro</span>
+                            <a href="/tags/Guava/">
+                                <span class="chip bg-color">Guava</span>
                             </a>
                         
                     </div>
@@ -433,8 +433,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/shiro/" class="post-category">
-                                shiro
+                            <a href="/categories/Guava/" class="post-category">
+                                Guava
                             </a>
                         
                     </div>
@@ -446,7 +446,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-19
+                    2020-01-16
                 </div>
                 
 
@@ -455,14 +455,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    800
+                    1.1k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 				
@@ -478,24 +478,106 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="1-常见的认证方式"><a href="#1-常见的认证方式" class="headerlink" title="1 常见的认证方式"></a>1 常见的认证方式</h1><h2 id="1-1-Http-Basic-Auth"><a href="#1-1-Http-Basic-Auth" class="headerlink" title="1.1 Http Basic Auth"></a>1.1 Http Basic Auth</h2><p>每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再生产环境中避免使用。</p>
-<h2 id="1-2-Cookie-Auth"><a href="#1-2-Cookie-Auth" class="headerlink" title="1.2 Cookie Auth"></a>1.2 Cookie Auth</h2><p>Cookie认证机制就是为一次请求认证在服务端创建一个session对象，同时在客户端创建一个cookie对象，通过客户端提交的cookie对象与服务端的session对象匹配来实现状态的管理，默认的，当我们关闭浏览器的时候，cookie会被删除，但是可以通过修改cookie的过期时间在一定时间内有效。<br><strong>弊端</strong>：</p>
-<ul>
-<li>某些移动端可能不存在cookie（比如微信小程序）</li>
-<li>cookie存在跨域问题（在微服务之间端口不一样，或存在跨域问题。）<h2 id="1-3-OAuth"><a href="#1-3-OAuth" class="headerlink" title="1.3 OAuth"></a>1.3 OAuth</h2>OAuth（开放授权）是一个开放的授权标准，允许第三方应用访问在某一web服务器上存储的私密资源，而无需将用户名和密码提供给第三方软件。OAuth允许用户提供一个令牌，每一个令牌授权一个特定的第三方系统，通过这个令牌访问存在特定服务器上的资源。<br><img src="https://img-blog.csdnimg.cn/2019121519130361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="OAuth协议认证流程"><h2 id="1-4-Token-Auth"><a href="#1-4-Token-Auth" class="headerlink" title="1.4 Token Auth"></a>1.4 Token Auth</h2>Http Basic Auth的演化版本，每次请求服务端带上token标志，后台服务校验这个token是否合法，从而决定客户端是否可以访问后台资源。无状态</li>
+                <h1 id="Guava包为什么要提供hash"><a href="#Guava包为什么要提供hash" class="headerlink" title="Guava包为什么要提供hash"></a>Guava包为什么要提供hash</h1><p>java内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重<br>在简单的散列表中可以通过再hash解决这个问题，但是guava官方认为在其它情况无法满足需求。</p>
+<h1 id="HashFunction"><a href="#HashFunction" class="headerlink" title="HashFunction"></a>HashFunction</h1><p>HashFunction是一个纯无状态函数，它将任意数据块映射到固定数量的位，其属性是相等的输入始终产生相等的输出，而不相等的输入则尽可能频繁地产生不相等的输出。<br>示例：常用的hash算法</p>
+<pre class=" language-java"><code class="language-java">        <span class="token comment" spellcheck="true">// 计算MD5</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashString</span><span class="token punctuation">(</span><span class="token string">"hello, world"</span><span class="token punctuation">,</span>Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 计算sha256</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">sha256</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 计算sha512</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">sha512</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 计算crc32</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">crc32</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h1 id="Hasher"><a href="#Hasher" class="headerlink" title="Hasher"></a>Hasher</h1><p>可以向HashFunction请求有状态的哈希器，该哈希器提供流利的语法以将数据添加到哈希中，然后检索哈希值。哈希器可以接受任何原始输入，字节数组，字节数组的片段，字符序列，某些字符集中的字符序列等，<strong>或任何其他带有适当漏斗的对象</strong><br>示例：</p>
+<pre class=" language-java"><code class="language-java">
+Funnel<span class="token operator">&lt;</span>Person<span class="token operator">></span> personFunnel <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Funnel</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">funnel</span><span class="token punctuation">(</span>Person person<span class="token punctuation">,</span> PrimitiveSink into<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                into
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>birthYear<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+HashFunction hf <span class="token operator">=</span> Hashing<span class="token punctuation">.</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        HashCode hc <span class="token operator">=</span> hf<span class="token punctuation">.</span><span class="token function">newHasher</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">putLong</span><span class="token punctuation">(</span>11L<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span><span class="token string">"www"</span><span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">putObject</span><span class="token punctuation">(</span>person<span class="token punctuation">,</span> personFunnel<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h1 id="Funnel"><a href="#Funnel" class="headerlink" title="Funnel"></a>Funnel</h1><p>漏斗描述了对象如何Hash</p>
+<pre class=" language-java"><code class="language-java">Funnel<span class="token operator">&lt;</span>Person<span class="token operator">></span> personFunnel <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Funnel</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">funnel</span><span class="token punctuation">(</span>Person person<span class="token punctuation">,</span> PrimitiveSink into<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        into
+            <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>birthYear<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre>
+<h1 id="BloomFilter-布隆过滤器"><a href="#BloomFilter-布隆过滤器" class="headerlink" title="BloomFilter  布隆过滤器"></a>BloomFilter  布隆过滤器</h1><p>作用：布隆过滤器是一种概率数据结构，你可以测试对象是否绝对不在过滤器中，或者可能已添加到布隆过滤器中。<br>使用布隆过滤器，你需要实现Funnel漏斗，以便将你的对象拆解位原始类型</p>
+<h2 id="布隆过滤器大小该如何设定？"><a href="#布隆过滤器大小该如何设定？" class="headerlink" title="布隆过滤器大小该如何设定？"></a>布隆过滤器大小该如何设定？</h2><p>较大的滤波器将具有较少的误报，而较小的将为零。<br>估算误报率的公式是：<img src="https://img-blog.csdnimg.cn/20200116121449639.png" alt="(1-e-kn/m)k">  因此，你得首先确定你期望插入的数据大小n，然后尝试不同的k,m值</p>
+<h2 id="布隆过滤器hash函数的个数如何设置？"><a href="#布隆过滤器hash函数的个数如何设置？" class="headerlink" title="布隆过滤器hash函数的个数如何设置？"></a>布隆过滤器hash函数的个数如何设置？</h2><p>hash函数设置的越多，过滤器就越慢，同时会越快被填满。如果设置的太少，又会遇到很多误报。<br>因此，首先确定n的值，通过公式确定k的值 k = (m/n)ln(2)^2</p>
+<h2 id="布隆过滤的hash函数改如何选择？"><a href="#布隆过滤的hash函数改如何选择？" class="headerlink" title="布隆过滤的hash函数改如何选择？"></a>布隆过滤的hash函数改如何选择？</h2><ul>
+<li>Chromium uses HashMix. (also, here’s a short description of how they use bloom filters)</li>
+<li>python-bloomfilter uses cryptographic hashes</li>
+<li>Plan9 uses a simple hash as proposed in Mitzenmacher 2005</li>
+<li>Sdroege Bloom filter uses fnv1a (included just because I wanted to show one that uses fnv.)</li>
+<li>Squid uses MD5</li>
 </ul>
-<p><strong>基于Token Auth的好处</strong></p>
-<ul>
-<li>支持跨域访问：cookie不允许跨域访问，token不存在这个问题。一般将token信息设置在http请求头里</li>
-<li>无状态，服务端可自行扩展，token机制在服务端不需要存储session，因而无需解决session共享问题。</li>
-<li>更适合用CDN：跨域通过内容分发网络请求你服务端的所有资料，你的服务端只需要提供API即可</li>
-<li>去耦：不需要绑定一个特定的身份认证方案</li>
-<li>更适合原生应用：当你的客户端是一个原生平台（IOS,Android，Window8），cookie不被支持，你需要通过cookie容器解决</li>
-<li>CSRF： 因为不在依赖cookie，所以不需要考虑跨站请求伪造问题。</li>
-<li>可以做到标准化，例如jwt（json web token） </li>
-</ul>
-<h1 id="2-有状态服务和无状态服务"><a href="#2-有状态服务和无状态服务" class="headerlink" title="2 有状态服务和无状态服务"></a>2 有状态服务和无状态服务</h1><h2 id="2-1-有状态服务"><a href="#2-1-有状态服务" class="headerlink" title="2.1 有状态服务"></a>2.1 有状态服务</h2><p>有状态服务：服务端会存储请求上下文相关的数据，先后的请求可能是有关联的。例如，传统web应用中，使用session维护已登录用户的数据。客户端（浏览器）存储jsession数据，在提交请求后，找到次jsessionid 对应的session数据。虽然http是无状态的，但是借助session可以使http服务装换为有状态的。</p>
-<h2 id="2-2-无状态服务"><a href="#2-2-无状态服务" class="headerlink" title="2.2 无状态服务"></a>2.2 无状态服务</h2><p>无状态服务：本次请求不依赖于之前的请求，本次请求的数据全部包含在该次请求中。例如，基于token的验证方式，不需要sesession维持会话数据。</p>
+<h2 id="布隆过滤器的速度和空间效率"><a href="#布隆过滤器的速度和空间效率" class="headerlink" title="布隆过滤器的速度和空间效率"></a>布隆过滤器的速度和空间效率</h2><p>set操作和测试元素是否在过滤器中的时间复杂度都是O（k）,取决与hash函数的个数<br>空间复杂度，取决与你能忍受的错误率以及你插入的数据潜在个数。如果数量有限，Vector表现更好，如果你不能估算潜在的插入个数，那么最好使用哈希表或可伸缩的Bloom过滤器</p>
+<h2 id="guava包怎么使用布隆过滤器"><a href="#guava包怎么使用布隆过滤器" class="headerlink" title="guava包怎么使用布隆过滤器"></a>guava包怎么使用布隆过滤器</h2><p>示例代码</p>
+<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testBloomFilter</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">// 定义漏斗，拆解对象</span>
+        Funnel<span class="token operator">&lt;</span>Person<span class="token operator">></span> personFunnel <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Funnel</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">funnel</span><span class="token punctuation">(</span>Person person<span class="token punctuation">,</span> PrimitiveSink into<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                into
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>birthYear<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        Person person <span class="token operator">=</span> Person<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">id</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">birthYear</span><span class="token punctuation">(</span><span class="token number">1995</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">firstName</span><span class="token punctuation">(</span><span class="token string">"Zhou"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">lastName</span><span class="token punctuation">(</span><span class="token string">"Evan"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 期望插入的expectedInsertions 大小</span>
+        BloomFilter<span class="token operator">&lt;</span>Person<span class="token operator">></span> bloomFilter <span class="token operator">=</span> BloomFilter<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>personFunnel<span class="token punctuation">,</span> <span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 判断person是否包含在布隆过滤器中 </span>
+        <span class="token comment" spellcheck="true">//,如果返回false 那么就是一定不存在，如果返回True，可能存在</span>
+        <span class="token keyword">boolean</span> b <span class="token operator">=</span> bloomFilter<span class="token punctuation">.</span><span class="token function">mightContain</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//false </span>
+        bloomFilter<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> b1 <span class="token operator">=</span> bloomFilter<span class="token punctuation">.</span><span class="token function">mightContain</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>ps：<br><strong>我们并没有指布隆过滤器大小，以及hash函数的个数，那么guava内部是怎么做的呢？</strong><br>内部有这两个函数，来参数化过滤器大小，和hash函数的个数，函数的实现就是我们上面提到的公式的体现。</p>
+<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// 计算布隆过滤器大小</span>
+    <span class="token keyword">long</span> numBits <span class="token operator">=</span> <span class="token function">optimalNumOfBits</span><span class="token punctuation">(</span>expectedInsertions<span class="token punctuation">,</span> fpp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 计算hash函数的个数</span>
+    <span class="token keyword">int</span> numHashFunctions <span class="token operator">=</span> <span class="token function">optimalNumOfHashFunctions</span><span class="token punctuation">(</span>expectedInsertions<span class="token punctuation">,</span> numBits<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">static</span> <span class="token keyword">long</span> <span class="token function">optimalNumOfBits</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">,</span> <span class="token keyword">double</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>p <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      p <span class="token operator">=</span> Double<span class="token punctuation">.</span>MIN_VALUE<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">-</span>n <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">optimalNumOfHashFunctions</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">,</span> <span class="token keyword">long</span> m<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// (m / n) * log(2), but avoid truncation due to division!</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> m <span class="token operator">/</span> n <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
 
             </div>
             <hr/>
@@ -521,7 +603,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2019/12/19/web-ying-yong-ren-zheng-gai-shu/">http://evanzhou666.com/2019/12/19/web-ying-yong-ren-zheng-gai-shu/</a>
+                    <a href="http://evanzhou666.com/2020/01/16/guava-shi-yong-er-zhi-hash/">http://evanzhou666.com/2020/01/16/guava-shi-yong-er-zhi-hash/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -559,8 +641,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/shiro/">
-                                    <span class="chip bg-color">shiro</span>
+                                <a href="/tags/Guava/">
+                                    <span class="chip bg-color">Guava</span>
                                 </a>
                             
                         </div>
@@ -726,51 +808,48 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2019/12/29/springboot-zheng-he-shiro-wen-ti-shu-ju-ku-shi-wu-shi-xiao/">
+                <a href="/2020/01/16/guava-shi-yong-er-zhi-hash/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="整合shiro问题--数据库事务失效">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Guava使用（二）哈希">
                         
-                        <span class="card-title">整合shiro问题--数据库事务失效</span>
+                        <span class="card-title">Guava使用（二）哈希</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            spring事务管理spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。spring事务管理介绍我之前写的还算比较详细：spring事务管理介绍
-
+                            Guava包为什么要提供hashjava内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重在简单的散列表中可以通过再hash解决这个问题，但是gu
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-29
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/shiro/" class="post-category">
-                                    shiro
+                            <a href="/categories/Guava/" class="post-category">
+                                    Guava
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shiro/">
-                        <span class="chip bg-color">shiro</span>
-                    </a>
-                    
-                    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
-                        <span class="chip bg-color">spring事务</span>
+                    <a href="/tags/Guava/">
+                        <span class="chip bg-color">Guava</span>
                     </a>
                     
                 </div>
@@ -784,34 +863,35 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/12/19/shiro-ji-chu/">
+                <a href="/2020/01/14/guava-shi-yong-yi-string-kuo-zhan/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="shiro基础">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Guava使用（一）Strings扩展">
                         
-                        <span class="card-title">shiro基础</span>
+                        <span class="card-title">Guava使用（一）Strings扩展</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            shiro 架构
-
-Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； 
-Authorization: 权限验
+                            Joiner字符串连接
+// 跳过空值
+ String skipNulls = Joiner.on(",")
+                .skipNulls()
+                .join("张三", "李四", "王
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/shiro/" class="post-category">
-                                    shiro
+                            <a href="/categories/Guava/" class="post-category">
+                                    Guava
                                 </a>
                             
                             
@@ -821,8 +901,8 @@ Authorization: 权限验
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shiro/">
-                        <span class="chip bg-color">shiro</span>
+                    <a href="/tags/Guava/">
+                        <span class="chip bg-color">Guava</span>
                     </a>
                     
                 </div>
