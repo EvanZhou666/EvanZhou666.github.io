@@ -468,7 +468,7 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.4k
+                    1.5k
                 </div>
                 
 
@@ -640,7 +640,7 @@ security.require-ssl=true</code></pre><h3 id="在springboot2-x中开启Https"><a
 <p>密钥库可以采用JKS或PKCS12格式。在执行此命令期间，keytool将要求我们提供在本教程开始时设置的密钥库密码（非常安全的密码）。<br>为了使JRE信任我们的证书，我们需要将其导入cacerts中：JRE信任存储区负责保存所有可以信任的证书。</p>
 <pre class=" language-shell"><code class="language-shell">keytool -importcert -file myCertificate.crt -alias tomcat -keystore $JDK_HOME/jre/lib/security/cacerts</code></pre>
 <p>执行过程中需要输入keystore的密码，如果你没有改过默认的密码是changeit或changeme（不同的操作系统不一样），keytool会询问是否信任该证书，我们输入yes</p>
-<p>使用自制的浏览器时，会提示ssl证书不可信，如何使浏览器信任证书参考<a href="https://www.jianshu.com/p/35c31b865bb9" target="_blank" rel="noopener">https://www.jianshu.com/p/35c31b865bb9</a></p>
+<p>使用自制的浏览器时，会提示ssl证书不可信，如何使浏览器信任证书参考<a href="https://www.jianshu.com/p/35c31b865bb9" target="_blank" rel="noopener">https://www.jianshu.com/p/35c31b865bb9</a><br>参考资料：<br>[SSL证书生成] (<a href="https://github.com/X-rapido/CAS_SSO_Record/blob/master/SSL%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90.md" target="_blank" rel="noopener">https://github.com/X-rapido/CAS_SSO_Record/blob/master/SSL%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90.md</a>)</p>
 
             </div>
             <hr/>
