@@ -4,12 +4,9 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Guava使用（一）Strings扩展, EvanZhou">
-    <meta name="description" content="Joiner字符串连接
-// 跳过空值
- String skipNulls = Joiner.on(&#34;,&#34;)
-                .skipNulls()
-                .join(&#34;张三&#34;, &#34;李四&#34;, &#34;王">
+    <meta name="keywords" content="整合shiro问题--数据库事务失效, EvanZhou">
+    <meta name="description" content="spring事务管理spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。spring事务管理介绍我之前写的还算比较详细：spring事务管理介绍
+">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -17,7 +14,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Guava使用（一）Strings扩展 | EvanZhou</title>
+    <title>整合shiro问题--数据库事务失效 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -307,13 +304,13 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/11.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Guava使用（一）Strings扩展
+                        整合shiro问题--数据库事务失效
                     </div>
                 </div>
             </div>
@@ -425,8 +422,12 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Guava/">
-                                <span class="chip bg-color">Guava</span>
+                            <a href="/tags/shiro/">
+                                <span class="chip bg-color">shiro</span>
+                            </a>
+                        
+                            <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
+                                <span class="chip bg-color">spring事务</span>
                             </a>
                         
                     </div>
@@ -437,8 +438,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/Guava/" class="post-category">
-                                Guava
+                            <a href="/categories/shiro/" class="post-category">
+                                shiro
                             </a>
                         
                     </div>
@@ -450,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-14
+                    2019-12-29
                 </div>
                 
 
@@ -459,7 +460,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    407
+                    600
                 </div>
                 
 
@@ -482,118 +483,24 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Joiner"><a href="#Joiner" class="headerlink" title="Joiner"></a>Joiner</h2><p>字符串连接</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 跳过空值</span>
- String skipNulls <span class="token operator">=</span> Joiner<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">skipNulls</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span> <span class="token string">"李四"</span><span class="token punctuation">,</span> <span class="token string">"王五"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>skipNulls<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//张三,李四,王五</span>
-
-        String useNUll <span class="token operator">=</span> Joiner
-                <span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">useForNull</span><span class="token punctuation">(</span><span class="token string">"null"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">//空替换</span>
-                <span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">"张三"</span><span class="token punctuation">,</span>null<span class="token punctuation">,</span> <span class="token string">"李四"</span><span class="token punctuation">,</span> <span class="token string">"王五"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>useNUll<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//张三,null,李四,王五</span></code></pre>
-<h2 id="Splitter"><a href="#Splitter" class="headerlink" title="Splitter"></a>Splitter</h2><p>作用：字符串分隔<br>原因：JDK自带的split()函数，会默认忽略尾部的分隔符，StringTokenizer 会用五个空字符代替。</p>
-<pre class=" language-java"><code class="language-java"> String<span class="token punctuation">[</span><span class="token punctuation">]</span> split <span class="token operator">=</span> <span class="token string">",a,,b,"</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">","</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// "", "a", "", "b"</span></code></pre>
-<pre class=" language-java"><code class="language-java">Iterable<span class="token operator">&lt;</span>String<span class="token operator">></span> split1 <span class="token operator">=</span> Splitter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span><span class="token string">','</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">trimResults</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">omitEmptyStrings</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"foo,bar,,   qux"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>split1<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//[foo, bar, qux]</span></code></pre>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// 任意字符进行拆分</span>
-Iterable<span class="token operator">&lt;</span>String<span class="token operator">></span> split1 <span class="token operator">=</span> Splitter<span class="token punctuation">.</span><span class="token function">on</span><span class="token punctuation">(</span>CharMatcher<span class="token punctuation">.</span><span class="token function">anyOf</span><span class="token punctuation">(</span><span class="token string">",;."</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">trimResults</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">omitEmptyStrings</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">"foo,bar,,   qux;23.,s"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<table>
-<thead>
-<tr>
-<th>API</th>
-<th>作用</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Splitter.on(char)</td>
-<td></td>
-<td>Splitter.on(‘;’)</td>
-</tr>
-<tr>
-<td>Splitter.on(CharMatcher)</td>
-<td>以任意字符进行拆分</td>
-<td>Splitter.on(CharMatcher.BREAKING_WHITESPACE) Splitter.on(CharMatcher.anyOf(“;,.”))</td>
-</tr>
-<tr>
-<td>Splitter.on(String)</td>
-<td></td>
-<td>Splitter.on(“, “)</td>
-</tr>
-<tr>
-<td>Splitter.on(Pattern)</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>Splitter.onPattern(String)</td>
-<td></td>
-<td>Splitter.onPattern(“\r?\n”)</td>
-</tr>
-<tr>
-<td>Splitter.fixedLength(int)</td>
-<td></td>
-<td>Splitter.fixedLength(3)</td>
-</tr>
-</tbody></table>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>描述</th>
-<th>示例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>omitEmptyStrings()</td>
-<td>Automatically omits empty strings from theresult.</td>
-<td>Splitter.on(‘,’).omitEmptyStrings().split(“a,,c,d”)returns “a”, “c”, “d”</td>
-</tr>
-<tr>
-<td>trimResults()</td>
-<td>Trims whitespace from the results; equivalent to trimResults(CharMatcher.WHITESPACE).</td>
-<td>Splitter.on(‘,’).trimResults().split(“a, b, c, d”) returns “a”, “b”, “c”, “d”</td>
-</tr>
-<tr>
-<td>trimResults(CharMatcher)</td>
-<td>Trims characters matching the specified CharMatcher from results.</td>
-<td>Splitter.on(‘,’).trimResults(CharMatcher.is(‘<em>‘)).split(“_a ,_b</em> ,c__”) returns “a “, “b_ “, “c”.</td>
-</tr>
-<tr>
-<td>limit(int)</td>
-<td>Stops splitting after the specified number of strings have beenreturned.</td>
-<td>Splitter.on(‘,’).limit(3).split(“a,b,c,d”) returns “a”, “b”, “c,d”</td>
-</tr>
-</tbody></table>
-<h3 id="其它split方法"><a href="#其它split方法" class="headerlink" title="其它split方法"></a>其它split方法</h3><ul>
-<li>splitToList</li>
-<li>splitToStream</li>
+                <h2 id="spring事务管理"><a href="#spring事务管理" class="headerlink" title="spring事务管理"></a>spring事务管理</h2><p>spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。<br>spring事务管理介绍我之前写的还算比较详细：<a href="https://blog.csdn.net/qq_36719449/article/details/83614701" target="_blank" rel="noopener">spring事务管理介绍</a></p>
+<h2 id="spring事务失效的原因"><a href="#spring事务失效的原因" class="headerlink" title="spring事务失效的原因"></a>spring事务失效的原因</h2><ul>
+<li>没有开启事务 @EnableTransactionManagement （如果使用springboot会自动配置开启该注解，注册事务管理器和事务增强器）</li>
+<li>异常类型不对，spring事务默认只对RuntimeException进行回滚。</li>
+<li>只能在作用在public方法上（SpringAOP基于代理的局限性）</li>
+<li>子线程中无法使用事务，也就是你自己new出来的线程，异步执行的任务无法使用事务。</li>
+<li>通过this调用当前类的方法。因为this调用是真实对象，并不是通过代理对象调用。例如：如果是一个不带事务的方法调用该类的带事务的方法，直接通过this.xxx()调用，而不生成代理事务。</li>
+<li>…<br><strong>总结就是一句话：既然spring事务依赖于动态代理，那么事务能否失效，就开是否生成了代理对象。</strong></li>
 </ul>
-<h2 id="CharMatcher"><a href="#CharMatcher" class="headerlink" title="CharMatcher"></a>CharMatcher</h2><p>提供了字符串替换等操作<br> CharMatcher.is(‘a’).replaceFrom(“yaha”, “oo”) // return yoohoo<br> 如果要调用的字符串只有一个字符，最好直接使用 replaceFrom(CharSequence, char)</p>
-<h2 id="Charsets"><a href="#Charsets" class="headerlink" title="Charsets"></a>Charsets</h2><pre class=" language-java"><code class="language-java">    bytes <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span>Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-<h2 id="CaseFormat"><a href="#CaseFormat" class="headerlink" title="CaseFormat"></a>CaseFormat</h2><p>字符格式化</p>
-<pre class=" language-java"><code class="language-java">   <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testCaseFormat</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
- <span class="token comment" spellcheck="true">//       小驼峰 constantName</span>
-        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_CAMEL<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//        连接 constant-name</span>
-        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_HYPHEN<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//         constant_name</span>
-        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>LOWER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//           大驼峰 ConstantName</span>
-        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>UPPER_CAMEL<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token comment" spellcheck="true">//          CONSTANT_NAME</span>
-        CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">.</span><span class="token function">to</span><span class="token punctuation">(</span>CaseFormat<span class="token punctuation">.</span>UPPER_UNDERSCORE<span class="token punctuation">,</span> <span class="token string">"CONSTANT_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
+<h2 id="springboot-整合shiro-事务失效"><a href="#springboot-整合shiro-事务失效" class="headerlink" title="springboot 整合shiro 事务失效"></a>springboot 整合shiro 事务失效</h2><p>如果你的项目整合了shiro，那么注意观察启动日志是否打印了类似于这样的语句：</p>
+<pre><code> Bean &#39;sysUser&#39; of type [com.sun.proxy.$Proxy87] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)</code></pre><p>这句话的意思就是SysUser对象被提前初始化了，不会被spring后置处理器拦截处理，导致出现问题，例如不能够被自动代理。<br>如果你看明白了这句话，我想也大概明白了整合shiro时候为什么事务会失效了，因为spring事务依赖于AOP代理技术实现。</p>
+<p>整合Shiro时候，你在自定义的Realm中自动注入了UserService，UserService在这里被提前初始化了，所以事务失效了。</p>
+<p>具体原因：ShiroFilterFactoryBean实现了后置处理器接口，在加载bean后置处理器前会加载Configuration配置类，导致ShiroFactoryBean被初始化了，也就是在这里提前实例化了相关的bean。</p>
+<p>ShiroFilterFactoryBean -&gt; SecurityManager -&gt; Realm实现类 -&gt; UserService</p>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>在自定义Realm的中注入UserService时候，使用懒加载@Lazy。</p>
+<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Autowired</span>
+    <span class="token annotation punctuation">@Lazy</span>
+    <span class="token keyword">private</span> SysUserService userService<span class="token punctuation">;</span></code></pre>
 
             </div>
             <hr/>
@@ -619,7 +526,7 @@ Iterable<span class="token operator">&lt;</span>String<span class="token operato
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2020/01/14/guava-shi-yong-yi-string-kuo-zhan/">http://evanzhou666.com/2020/01/14/guava-shi-yong-yi-string-kuo-zhan/</a>
+                    <a href="http://evanzhou666.com/2019/12/29/springboot-shiro-t-t-yo-z-z/">http://evanzhou666.com/2019/12/29/springboot-shiro-t-t-yo-z-z/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -657,8 +564,12 @@ Iterable<span class="token operator">&lt;</span>String<span class="token operato
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Guava/">
-                                    <span class="chip bg-color">Guava</span>
+                                <a href="/tags/shiro/">
+                                    <span class="chip bg-color">shiro</span>
+                                </a>
+                            
+                                <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
+                                    <span class="chip bg-color">spring事务</span>
                                 </a>
                             
                         </div>
@@ -828,24 +739,28 @@ Iterable<span class="token operator">&lt;</span>String<span class="token operato
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/16/guava-shi-yong-er-zhi-hash/">
+                <a href="/2020/01/14/guava-string-y/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Guava使用（二）哈希">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Guava使用（一）Strings扩展">
                         
-                        <span class="card-title">Guava使用（二）哈希</span>
+                        <span class="card-title">Guava使用（一）Strings扩展</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Guava包为什么要提供hashjava内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重在简单的散列表中可以通过再hash解决这个问题，但是gu
+                            Joiner字符串连接
+// 跳过空值
+ String skipNulls = Joiner.on(",")
+                .skipNulls()
+                .join("张三", "李四", "王
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
                         </span>
                         <span class="publish-author">
                             
@@ -877,25 +792,24 @@ Iterable<span class="token operator">&lt;</span>String<span class="token operato
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/12/29/springboot-zheng-he-shiro-wen-ti-shu-ju-ku-shi-wu-shi-xiao/">
+                <a href="/2019/12/19/web-zh-d-u/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="整合shiro问题--数据库事务失效">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="web应用认证概述">
                         
-                        <span class="card-title">整合shiro问题--数据库事务失效</span>
+                        <span class="card-title">web应用认证概述</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            spring事务管理spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。spring事务管理介绍我之前写的还算比较详细：spring事务管理介绍
-
+                            1 常见的认证方式1.1 Http Basic Auth每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-29
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
                             </span>
                         <span class="publish-author">
                             
@@ -914,10 +828,6 @@ Iterable<span class="token operator">&lt;</span>String<span class="token operato
                     
                     <a href="/tags/shiro/">
                         <span class="chip bg-color">shiro</span>
-                    </a>
-                    
-                    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
-                        <span class="chip bg-color">spring事务</span>
                     </a>
                     
                 </div>

@@ -4,10 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Guava集合(二)工具类篇, EvanZhou">
-    <meta name="description" content="Immutablexxx 不可变集合JDK 提供了Collections.unmodifiableXXX方法，为什么guava还有提供不可变方法。根据官网的描述我认为最大的原因有两个:
-
-jdk提供的不可变集合方法是不安全的，如果原有集合的">
+    <meta name="keywords" content="Guava使用（二）哈希, EvanZhou">
+    <meta name="description" content="Guava包为什么要提供hashjava内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重在简单的散列表中可以通过再hash解决这个问题，但是gu">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -15,7 +13,7 @@ jdk提供的不可变集合方法是不安全的，如果原有集合的">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Guava集合(二)工具类篇 | EvanZhou</title>
+    <title>Guava使用（二）哈希 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -305,13 +303,13 @@ jdk提供的不可变集合方法是不安全的，如果原有集合的">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        Guava集合(二)工具类篇
+                        Guava使用（二）哈希
                     </div>
                 </div>
             </div>
@@ -448,7 +446,7 @@ jdk提供的不可变集合方法是不安全的，如果原有集合的">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-01-27
+                    2020-01-16
                 </div>
                 
 
@@ -457,7 +455,7 @@ jdk提供的不可变集合方法是不安全的，如果原有集合的">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    987
+                    1.1k
                 </div>
                 
 
@@ -480,148 +478,106 @@ jdk提供的不可变集合方法是不安全的，如果原有集合的">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="Immutablexxx-不可变集合"><a href="#Immutablexxx-不可变集合" class="headerlink" title="Immutablexxx 不可变集合"></a>Immutablexxx 不可变集合</h2><p>JDK 提供了Collections.unmodifiableXXX方法，为什么guava还有提供不可变方法。根据官网的描述我认为最大的原因有两个:</p>
-<ul>
-<li>jdk提供的不可变集合方法是不安全的，如果原有集合的引用在其它地方被持有，那么就不是真的不可变，可以通过原有集合的引用改变该“不可变集合”。</li>
-<li>低效：数据结构仍然具有可变集合的所有开销，包括并发修改检查，哈希表中的额外空间等。</li>
-</ul>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//  Collections.unmodifiableXXX方法不安全示例</span>
-    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">ImmutableTest</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        ArrayList<span class="token operator">&lt;</span>String<span class="token operator">></span> fruits <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Pear"</span><span class="token punctuation">,</span> <span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        ImmutableList<span class="token operator">&lt;</span>String<span class="token operator">></span> immutableList <span class="token operator">=</span> ImmutableList<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> Collections<span class="token punctuation">.</span><span class="token function">unmodifiableList</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <h2 id="Guava包为什么要提供hash"><a href="#Guava包为什么要提供hash" class="headerlink" title="Guava包为什么要提供hash"></a>Guava包为什么要提供hash</h2><p>java内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重<br>在简单的散列表中可以通过再hash解决这个问题，但是guava官方认为在其它情况无法满足需求。</p>
+<h2 id="HashFunction"><a href="#HashFunction" class="headerlink" title="HashFunction"></a>HashFunction</h2><p>HashFunction是一个纯无状态函数，它将任意数据块映射到固定数量的位，其属性是相等的输入始终产生相等的输出，而不相等的输入则尽可能频繁地产生不相等的输出。<br>示例：常用的hash算法</p>
+<pre class=" language-java"><code class="language-java">        <span class="token comment" spellcheck="true">// 计算MD5</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashString</span><span class="token punctuation">(</span><span class="token string">"hello, world"</span><span class="token punctuation">,</span>Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 计算sha256</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">sha256</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 计算sha512</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">sha512</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 计算crc32</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>Hashing<span class="token punctuation">.</span><span class="token function">crc32</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hashBytes</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span><span class="token function">getBytes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="Hasher"><a href="#Hasher" class="headerlink" title="Hasher"></a>Hasher</h2><p>可以向HashFunction请求有状态的哈希器，该哈希器提供流利的语法以将数据添加到哈希中，然后检索哈希值。哈希器可以接受任何原始输入，字节数组，字节数组的片段，字符序列，某些字符集中的字符序列等，<strong>或任何其他带有适当漏斗的对象</strong><br>示例：</p>
+<pre class=" language-java"><code class="language-java">
+Funnel<span class="token operator">&lt;</span>Person<span class="token operator">></span> personFunnel <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Funnel</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">funnel</span><span class="token punctuation">(</span>Person person<span class="token punctuation">,</span> PrimitiveSink into<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                into
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>birthYear<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
 
-        fruits<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>immutableList<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[Apple, Pear, Banana]</span>
-
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[Apple, Pear, Banana, Orange]</span>
-    <span class="token punctuation">}</span></code></pre>
-<h3 id="怎样使用"><a href="#怎样使用" class="headerlink" title="怎样使用"></a>怎样使用</h3><ul>
-<li>使用 copyOf 方法,例如 ImmutableSet.copyOf(set)</li>
-<li>使用  of method,例如, ImmutableSet.of(“a”, “b”, “c”) or ImmutableMap.of(“a”, 1, “b”, 2)</li>
-<li>使用  Builder</li>
-</ul>
-<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">ImmutableBuilderTest</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> ImmutableList<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"I"</span><span class="token punctuation">,</span> <span class="token string">"am"</span><span class="token punctuation">,</span> <span class="token string">"java"</span><span class="token punctuation">,</span> <span class="token string">"programer"</span><span class="token punctuation">)</span>
-                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<h3 id="ImmutableXXX-copyOf"><a href="#ImmutableXXX-copyOf" class="headerlink" title="ImmutableXXX.copyOf"></a>ImmutableXXX.copyOf</h3><p>ImmutableXXX.copyOf方法会尽可能的避免复制数据，例如如下代码：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// “聪明”的copyof方法只返回视图</span>
-<span class="token comment" spellcheck="true">// 看源码 ImmutableSet 和Jdk hashSet数据结构不一样，ImmutableSet采用线性探测法，利用数组存储数据</span>
-ImmutableSet<span class="token operator">&lt;</span>String<span class="token operator">></span> foobar <span class="token operator">=</span> ImmutableSet<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"foo"</span><span class="token punctuation">,</span> <span class="token string">"bar"</span><span class="token punctuation">,</span> <span class="token string">"baz"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token function">thingamajig</span><span class="token punctuation">(</span>foobar<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">void</span> <span class="token function">thingamajig</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span>String<span class="token operator">></span> collection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-   ImmutableList<span class="token operator">&lt;</span>String<span class="token operator">></span> defensiveCopy <span class="token operator">=</span> ImmutableList<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">;</span>
-   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+HashFunction hf <span class="token operator">=</span> Hashing<span class="token punctuation">.</span><span class="token function">md5</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        HashCode hc <span class="token operator">=</span> hf<span class="token punctuation">.</span><span class="token function">newHasher</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">putLong</span><span class="token punctuation">(</span>11L<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span><span class="token string">"www"</span><span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">putObject</span><span class="token punctuation">(</span>person<span class="token punctuation">,</span> personFunnel<span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">hash</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<h2 id="Funnel"><a href="#Funnel" class="headerlink" title="Funnel"></a>Funnel</h2><p>漏斗描述了对象如何Hash</p>
+<pre class=" language-java"><code class="language-java">Funnel<span class="token operator">&lt;</span>Person<span class="token operator">></span> personFunnel <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Funnel</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">funnel</span><span class="token punctuation">(</span>Person person<span class="token punctuation">,</span> PrimitiveSink into<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        into
+            <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>birthYear<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
-<p>源码分析：</p>
-<pre class=" language-java"><code class="language-java">  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> ImmutableList<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">copyOf</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> elements<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token comment" spellcheck="true">// 如果是不可变集合类型，就尽可能的不去复制数据</span>
-    <span class="token keyword">if</span> <span class="token punctuation">(</span>elements <span class="token keyword">instanceof</span> <span class="token class-name">ImmutableCollection</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unchecked"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// all supported methods are covariant</span>
-      ImmutableList<span class="token operator">&lt;</span>E<span class="token operator">></span> list <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>ImmutableCollection<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token punctuation">)</span> elements<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token comment" spellcheck="true">// isPartialView是否是局部视图，决定copyof的实现是否应进行显式复制以避免内存泄漏。例如：</span>
-      <span class="token comment" spellcheck="true">//你有ImmutableList &lt;String> hugeList，并且执行了ImmutableList.copyOf（hugeList.subList（0，10）），则将执行显式复制，以避免意外按住引用不需要的hugeList中的引用。</span>
-      <span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">isPartialView</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> ImmutableList<span class="token punctuation">.</span>&lt;E<span class="token operator">></span><span class="token function">asImmutableList</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">:</span> list<span class="token punctuation">;</span>
+<h2 id="BloomFilter-布隆过滤器"><a href="#BloomFilter-布隆过滤器" class="headerlink" title="BloomFilter  布隆过滤器"></a>BloomFilter  布隆过滤器</h2><p>作用：布隆过滤器是一种概率数据结构，你可以测试对象是否绝对不在过滤器中，或者可能已添加到布隆过滤器中。<br>使用布隆过滤器，你需要实现Funnel漏斗，以便将你的对象拆解位原始类型</p>
+<h3 id="布隆过滤器大小该如何设定？"><a href="#布隆过滤器大小该如何设定？" class="headerlink" title="布隆过滤器大小该如何设定？"></a>布隆过滤器大小该如何设定？</h3><p>较大的滤波器将具有较少的误报，而较小的将为零。<br>估算误报率的公式是：<img src="https://img-blog.csdnimg.cn/20200116121449639.png" alt="(1-e-kn/m)k">  因此，你得首先确定你期望插入的数据大小n，然后尝试不同的k,m值</p>
+<h3 id="布隆过滤器hash函数的个数如何设置？"><a href="#布隆过滤器hash函数的个数如何设置？" class="headerlink" title="布隆过滤器hash函数的个数如何设置？"></a>布隆过滤器hash函数的个数如何设置？</h3><p>hash函数设置的越多，过滤器就越慢，同时会越快被填满。如果设置的太少，又会遇到很多误报。<br>因此，首先确定n的值，通过公式确定k的值 k = (m/n)ln(2)^2</p>
+<h3 id="布隆过滤的hash函数改如何选择？"><a href="#布隆过滤的hash函数改如何选择？" class="headerlink" title="布隆过滤的hash函数改如何选择？"></a>布隆过滤的hash函数改如何选择？</h3><ul>
+<li>Chromium uses HashMix. (also, here’s a short description of how they use bloom filters)</li>
+<li>python-bloomfilter uses cryptographic hashes</li>
+<li>Plan9 uses a simple hash as proposed in Mitzenmacher 2005</li>
+<li>Sdroege Bloom filter uses fnv1a (included just because I wanted to show one that uses fnv.)</li>
+<li>Squid uses MD5</li>
+</ul>
+<h3 id="布隆过滤器的速度和空间效率"><a href="#布隆过滤器的速度和空间效率" class="headerlink" title="布隆过滤器的速度和空间效率"></a>布隆过滤器的速度和空间效率</h3><p>set操作和测试元素是否在过滤器中的时间复杂度都是O（k）,取决与hash函数的个数<br>空间复杂度，取决与你能忍受的错误率以及你插入的数据潜在个数。如果数量有限，Vector表现更好，如果你不能估算潜在的插入个数，那么最好使用哈希表或可伸缩的Bloom过滤器</p>
+<h2 id="guava包怎么使用布隆过滤器"><a href="#guava包怎么使用布隆过滤器" class="headerlink" title="guava包怎么使用布隆过滤器"></a>guava包怎么使用布隆过滤器</h2><p>示例代码</p>
+<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testBloomFilter</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">// 定义漏斗，拆解对象</span>
+        Funnel<span class="token operator">&lt;</span>Person<span class="token operator">></span> personFunnel <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Funnel</span><span class="token operator">&lt;</span>Person<span class="token operator">></span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token annotation punctuation">@Override</span>
+            <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">funnel</span><span class="token punctuation">(</span>Person person<span class="token punctuation">,</span> PrimitiveSink into<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                into
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>firstName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putString</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>lastName<span class="token punctuation">,</span> Charsets<span class="token punctuation">.</span>UTF_8<span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">putInt</span><span class="token punctuation">(</span>person<span class="token punctuation">.</span>birthYear<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        Person person <span class="token operator">=</span> Person<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">id</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">birthYear</span><span class="token punctuation">(</span><span class="token number">1995</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">firstName</span><span class="token punctuation">(</span><span class="token string">"Zhou"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">lastName</span><span class="token punctuation">(</span><span class="token string">"Evan"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 期望插入的expectedInsertions 大小</span>
+        BloomFilter<span class="token operator">&lt;</span>Person<span class="token operator">></span> bloomFilter <span class="token operator">=</span> BloomFilter<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>personFunnel<span class="token punctuation">,</span> <span class="token number">5000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">// 判断person是否包含在布隆过滤器中 </span>
+        <span class="token comment" spellcheck="true">//,如果返回false 那么就是一定不存在，如果返回True，可能存在</span>
+        <span class="token keyword">boolean</span> b <span class="token operator">=</span> bloomFilter<span class="token punctuation">.</span><span class="token function">mightContain</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">//false </span>
+        bloomFilter<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">boolean</span> b1 <span class="token operator">=</span> bloomFilter<span class="token punctuation">.</span><span class="token function">mightContain</span><span class="token punctuation">(</span>person<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>b1<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//true</span>
+    <span class="token punctuation">}</span></code></pre>
+<p>ps：<br><strong>我们并没有指布隆过滤器大小，以及hash函数的个数，那么guava内部是怎么做的呢？</strong><br>内部有这两个函数，来参数化过滤器大小，和hash函数的个数，函数的实现就是我们上面提到的公式的体现。</p>
+<pre class=" language-java"><code class="language-java">    <span class="token comment" spellcheck="true">// 计算布隆过滤器大小</span>
+    <span class="token keyword">long</span> numBits <span class="token operator">=</span> <span class="token function">optimalNumOfBits</span><span class="token punctuation">(</span>expectedInsertions<span class="token punctuation">,</span> fpp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 计算hash函数的个数</span>
+    <span class="token keyword">int</span> numHashFunctions <span class="token operator">=</span> <span class="token function">optimalNumOfHashFunctions</span><span class="token punctuation">(</span>expectedInsertions<span class="token punctuation">,</span> numBits<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<pre class=" language-java"><code class="language-java">    <span class="token keyword">static</span> <span class="token keyword">long</span> <span class="token function">optimalNumOfBits</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">,</span> <span class="token keyword">double</span> p<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>p <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      p <span class="token operator">=</span> Double<span class="token punctuation">.</span>MIN_VALUE<span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
-    <span class="token keyword">return</span> <span class="token function">construct</span><span class="token punctuation">(</span>elements<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">long</span><span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token operator">-</span>n <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+    <span class="token keyword">static</span> <span class="token keyword">int</span> <span class="token function">optimalNumOfHashFunctions</span><span class="token punctuation">(</span><span class="token keyword">long</span> n<span class="token punctuation">,</span> <span class="token keyword">long</span> m<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">// (m / n) * log(2), but avoid truncation due to division!</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">double</span><span class="token punctuation">)</span> m <span class="token operator">/</span> n <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
   <span class="token punctuation">}</span></code></pre>
-<h2 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h2><p>Lists主要提供了一系列的静态工厂方法创建List集合。</p>
-<ul>
-<li>Lists.newArrayList()</li>
-<li>Lists.newArrayList(E… elements)</li>
-<li>Lists.newArrayListWithCapacity(int initialArraySize)</li>
-<li>Lists.newLinkedList()</li>
-<li>Lists.newLinkedList(Iterable&lt;? extends E&gt; elements)</li>
-<li>Lists.newCopyOnWriteArrayList()</li>
-<li>Lists.newCopyOnWriteArrayList(Iterable&lt;? extends E&gt; elements)</li>
-<li>Lists.asList(@Nullable E first, E[] rest)</li>
-<li>Lists.asList(@Nullable E first, @Nullable E second, E[] rest)</li>
-<li>Lists.cartesianProduct(List&lt;? extends List&lt;? extends B&gt;&gt; lists) //求笛卡尔积</li>
-<li>Lists.cartesianProduct(List… lists) //求笛卡尔积</li>
-<li>Lists.transform(List<F> fromList, Function&lt;? super F, ? extends T&gt; function) //转换</li>
-<li>Lists.partition(List<T> list, int size) //按size分区</li>
-<li>Lists.reverse(List<T> list) //倒序</li>
-</ul>
-<p>示例</p>
-<pre class=" language-java"><code class="language-java">   <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testAsList</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"Hello"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-
-    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testOfList</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
-        List<span class="token operator">&lt;</span>String<span class="token operator">></span> lsit <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">,</span><span class="token string">"Guava"</span><span class="token punctuation">,</span><span class="token string">"Good"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        ArrayList<span class="token operator">&lt;</span>Object<span class="token operator">></span> lust <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayListWithExpectedSize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        List<span class="token operator">&lt;</span>String<span class="token operator">></span> transform <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">transform</span><span class="token punctuation">(</span>lsit<span class="token punctuation">,</span> <span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> element<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>transform<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testCartesianProduct</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        List<span class="token operator">&lt;</span>String<span class="token operator">></span> lsit <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">,</span><span class="token string">"Guava"</span><span class="token punctuation">,</span><span class="token string">"Good"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        List<span class="token operator">&lt;</span>String<span class="token operator">></span> lsit2 <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">,</span><span class="token string">"Nice"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token comment" spellcheck="true">//[[China, Hello], [China, Nice], [Guava, Hello], [Guava, Nice], [Good, Hello], [Good, Nice]]</span>
-        List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>String<span class="token operator">>></span> lists <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">cartesianProduct</span><span class="token punctuation">(</span>lsit<span class="token punctuation">,</span> lsit2<span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<h2 id="Sets"><a href="#Sets" class="headerlink" title="Sets"></a>Sets</h2><p>Sets工具类提供了创建各式各样Set集合的工厂方法</p>
-<ul>
-<li>Sets.newHashSet();</li>
-<li>Sets.newHashSet(E… elements) ;</li>
-<li>Sets.newConcurrentHashSet();</li>
-<li>Sets.newCopyOnWriteArraySet();</li>
-<li>Sets.newLinkedHashSet();</li>
-<li>Sets.newEnumSet();</li>
-<li>Sets.newTreeSet();</li>
-</ul>
-<p>示例：</p>
-<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
- * 测试EnumSet
- */</span>
-<span class="token annotation punctuation">@Test</span>
-    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testEnumSet</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        List<span class="token operator">&lt;</span>Fruit<span class="token operator">></span> fruits <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span>Apple<span class="token punctuation">,</span> Orange<span class="token punctuation">,</span> Pear<span class="token punctuation">,</span>Apple<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        EnumSet<span class="token operator">&lt;</span>Fruit<span class="token operator">></span> enumSet <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">newEnumSet</span><span class="token punctuation">(</span>fruits<span class="token punctuation">,</span> Fruit<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span>enumSet<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span></code></pre>
-<ul>
-<li>Sets.intersection（）// 求交集</li>
-<li>Sets.difference（final Set<E> set1, final Set&lt;?&gt; set2）//set1 有set2 没有的元素</li>
-<li>Sets.union（）// 全集</li>
-<li>Sets.symmetricDifference（ final Set&lt;? extends E&gt; set1, final Set&lt;? extends E&gt; set2）// 差集</li>
-</ul>
-<pre class=" language-java"><code class="language-java">Sets<span class="token punctuation">.</span>SetView<span class="token operator">&lt;</span>String<span class="token operator">></span> intersection <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">intersection</span><span class="token punctuation">(</span>primes<span class="token punctuation">,</span> wordsWithPrimeLength<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// contains "two", "three", "seven"</span>
-Sets<span class="token punctuation">.</span>SetView<span class="token operator">&lt;</span>String<span class="token operator">></span> difference <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">difference</span><span class="token punctuation">(</span>wordsWithPrimeLength<span class="token punctuation">,</span> primes<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// A有B没有的 [one, six, eight]</span>
-Sets<span class="token punctuation">.</span>SetView<span class="token operator">&lt;</span>String<span class="token operator">></span> union <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">union</span><span class="token punctuation">(</span>wordsWithPrimeLength<span class="token punctuation">,</span> primes<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [one, two, three, six, seven, eight, five]</span></code></pre>
-<h2 id="Maps"><a href="#Maps" class="headerlink" title="Maps"></a>Maps</h2><p>提供Map的创建的工厂方法，诸如 </p>
-<ul>
-<li>HashMap</li>
-<li>LinkedHashMap </li>
-<li>newConcurrentMap</li>
-<li>newTreeMap</li>
-<li>EnumMap</li>
-</ul>
-<p>其它API ：求差集</p>
-<pre class=" language-java"><code class="language-java">        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> left <span class="token operator">=</span> ImmutableMap<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> right <span class="token operator">=</span> ImmutableMap<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"d"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        MapDifference<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> diff <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">difference</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment" spellcheck="true">//        map1和map2的交集，key，value都相同</span>
-        diff<span class="token punctuation">.</span><span class="token function">entriesInCommon</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"b" => 2}</span>
-<span class="token comment" spellcheck="true">//        key值相同，但是value值不相同</span>
-        diff<span class="token punctuation">.</span><span class="token function">entriesDiffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"c" => (3, 4)}</span>
-<span class="token comment" spellcheck="true">//       key存在于left但是不在right中的</span>
-        diff<span class="token punctuation">.</span><span class="token function">entriesOnlyOnLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"a" => 1}</span>
-<span class="token comment" spellcheck="true">//        key存在于right但是不在中的left</span>
-        diff<span class="token punctuation">.</span><span class="token function">entriesOnlyOnRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"d" => 5}</span></code></pre>
-<p>参考资料<br><a href="https://guava.dev/releases/snapshot/api/docs/" target="_blank" rel="noopener">官方API</a></p>
 
             </div>
             <hr/>
@@ -647,7 +603,7 @@ Sets<span class="token punctuation">.</span>SetView<span class="token operator">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2020/01/27/guava-ji-he-er-gong-ju-lei-pian/">http://evanzhou666.com/2020/01/27/guava-ji-he-er-gong-ju-lei-pian/</a>
+                    <a href="http://evanzhou666.com/2020/01/16/guava-gi-gy-ohash/">http://evanzhou666.com/2020/01/16/guava-gi-gy-ohash/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -856,36 +812,33 @@ Sets<span class="token punctuation">.</span>SetView<span class="token operator">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/06/springboot-pei-zhi-https/">
+                <a href="/2020/01/27/guava-p-d-r-k/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="sprigboot如何配置https">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Guava集合(二)工具类篇">
                         
-                        <span class="card-title">sprigboot如何配置https</span>
+                        <span class="card-title">Guava集合(二)工具类篇</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            为springboot项目配置https分为两大步
+                            Immutablexxx 不可变集合JDK 提供了Collections.unmodifiableXXX方法，为什么guava还有提供不可变方法。根据官网的描述我认为最大的原因有两个:
 
-首先得拥有ssl证书，这里我们使用keytool工具生成，仅限开发测试环境
-在springboot项目中配置ssl
-
-Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke
+jdk提供的不可变集合方法是不安全的，如果原有集合的
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-06
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-01-27
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/https/" class="post-category">
-                                    https
+                            <a href="/categories/Guava/" class="post-category">
+                                    Guava
                                 </a>
                             
                             
@@ -895,16 +848,8 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/https/">
-                        <span class="chip bg-color">https</span>
-                    </a>
-                    
-                    <a href="/tags/ssl/">
-                        <span class="chip bg-color">ssl</span>
-                    </a>
-                    
-                    <a href="/tags/sringboot/">
-                        <span class="chip bg-color">sringboot</span>
+                    <a href="/tags/Guava/">
+                        <span class="chip bg-color">Guava</span>
                     </a>
                     
                 </div>
@@ -918,24 +863,28 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/16/guava-shi-yong-er-zhi-hash/">
+                <a href="/2020/01/14/guava-string-y/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Guava使用（二）哈希">
+                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="Guava使用（一）Strings扩展">
                         
-                        <span class="card-title">Guava使用（二）哈希</span>
+                        <span class="card-title">Guava使用（一）Strings扩展</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Guava包为什么要提供hashjava内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重在简单的散列表中可以通过再hash解决这个问题，但是gu
+                            Joiner字符串连接
+// 跳过空值
+ String skipNulls = Joiner.on(",")
+                .skipNulls()
+                .join("张三", "李四", "王
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-16
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-14
                             </span>
                         <span class="publish-author">
                             

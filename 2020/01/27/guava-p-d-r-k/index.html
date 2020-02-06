@@ -4,11 +4,10 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="shiro基础, EvanZhou">
-    <meta name="description" content="shiro 架构
+    <meta name="keywords" content="Guava集合(二)工具类篇, EvanZhou">
+    <meta name="description" content="Immutablexxx 不可变集合JDK 提供了Collections.unmodifiableXXX方法，为什么guava还有提供不可变方法。根据官网的描述我认为最大的原因有两个:
 
-Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； 
-Authorization: 权限验">
+jdk提供的不可变集合方法是不安全的，如果原有集合的">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -16,7 +15,7 @@ Authorization: 权限验">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>shiro基础 | EvanZhou</title>
+    <title>Guava集合(二)工具类篇 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -306,13 +305,13 @@ Authorization: 权限验">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/23.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        shiro基础
+                        Guava集合(二)工具类篇
                     </div>
                 </div>
             </div>
@@ -424,8 +423,8 @@ Authorization: 权限验">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/shiro/">
-                                <span class="chip bg-color">shiro</span>
+                            <a href="/tags/Guava/">
+                                <span class="chip bg-color">Guava</span>
                             </a>
                         
                     </div>
@@ -436,8 +435,8 @@ Authorization: 权限验">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/shiro/" class="post-category">
-                                shiro
+                            <a href="/categories/Guava/" class="post-category">
+                                Guava
                             </a>
                         
                     </div>
@@ -449,7 +448,7 @@ Authorization: 权限验">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2019-12-19
+                    2020-01-27
                 </div>
                 
 
@@ -458,14 +457,14 @@ Authorization: 权限验">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1k
+                    987
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 				
@@ -481,126 +480,148 @@ Authorization: 权限验">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="shiro-架构"><a href="#shiro-架构" class="headerlink" title="shiro 架构"></a>shiro 架构</h2><p><img src="https://img-blog.csdnimg.cn/20191218075651708.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro架构图"></p>
+                <h2 id="Immutablexxx-不可变集合"><a href="#Immutablexxx-不可变集合" class="headerlink" title="Immutablexxx 不可变集合"></a>Immutablexxx 不可变集合</h2><p>JDK 提供了Collections.unmodifiableXXX方法，为什么guava还有提供不可变方法。根据官网的描述我认为最大的原因有两个:</p>
 <ul>
-<li>Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； </li>
-<li>Authorization: 权限验证，决定用户有什么样的访问权限。</li>
-<li>Session Management: 用户session管理，支持非 web环境以及EJB。</li>
-<li>Cryptography: 加密，保证数据安全性。</li>
-<li>Web Support：Web 支持，可以非常容易的集成到Web 环境</li>
-<li>Caching：缓存，例如，可缓存用户session，用户信息,拥有的角色，权限信息</li>
-<li>Concurrency：Shiro 支持多线程应用的并发验证，即如在一个线程中开启另一个线程，能 把权限自动传播过去</li>
-<li>Run As：允许一个用户假装为另一个用户（如果他们允许）的身份进行访问； </li>
-<li>Remember Me：记住我，这个是非常常见的功能，即一次登录后，下次再来的话不用登录了</li>
+<li>jdk提供的不可变集合方法是不安全的，如果原有集合的引用在其它地方被持有，那么就不是真的不可变，可以通过原有集合的引用改变该“不可变集合”。</li>
+<li>低效：数据结构仍然具有可变集合的所有开销，包括并发修改检查，哈希表中的额外空间等。</li>
 </ul>
-<h2 id="shiro-概述"><a href="#shiro-概述" class="headerlink" title="shiro 概述"></a>shiro 概述</h2><p><img src="https://img-blog.csdnimg.cn/20191218080347940.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="shiro外观图"></p>
-<ul>
-<li>Subject: 与当前应用程序交互的“用户”。“Subject”可以是一个人，但它也可以表示第三方服务，守护程序帐户，定时任务或类似的东西-基本上是当前与该软件交互的任何东西。Subject  只是一个接口，当与 SecurityManager交互时，会转换为具体的subject。</li>
-<li>SecurityManager:  SecurityManager shiro的核心，管理协调其内部组件，程序员一般不用理会，并且应用程序开发人员几乎所有时间都花在Subject API上。</li>
-<li>Realms: realm是你的应用和shiro之间桥梁，当需要执行身份验证（登录）和授权（访问控制）时，Shiro会从一个或多个为应用程序配置的realm中查找数据内容。<table>
-<thead>
-<tr>
-<th>xxx</th>
-<th>算算算</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>s</td>
-<td>ss</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<h2 id="shiro中默认的过滤器"><a href="#shiro中默认的过滤器" class="headerlink" title="shiro中默认的过滤器"></a>shiro中默认的过滤器</h2><p>如下的拦截器 都在DefaultFilter 枚举类中有说明</p>
-<table>
-<thead>
-<tr>
-<th>过滤器名称</th>
-<th>过滤</th>
-<th>描述</th>
-<th>例子</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>anon</td>
-<td>AnonymousFilter</td>
-<td>不需要登录的路径</td>
-<td>/user/signup/** = anon</td>
-</tr>
-<tr>
-<td>authc</td>
-<td>FormAuthenticationFilter</td>
-<td>用户认证（登录）拦截器，如果验证不通过跳转到你配置的登录页面。主要属性：usernameParam：表单提交的用户名参数名  passwordParam:表单提交的密码参数名 loginUrl：登录页面地址 successUrl：登录成功后的跳转页面failureKeyAttribute 登录失败错误信息存储key</td>
-<td></td>
-</tr>
-<tr>
-<td>authcBasic</td>
-<td>BasicHttpAuthenticationFilter</td>
-<td>Basic Http 身份拦截器 主要属性：applicationName：弹出登录框显示的信息</td>
-<td></td>
-</tr>
-<tr>
-<td>logout</td>
-<td>LogoutFilter</td>
-<td>退出拦截器 主要属性：redirectUrl：退出成功后重定向的地址</td>
-<td></td>
-</tr>
-<tr>
-<td>noSessionCreation</td>
-<td>NoSessionCreationFilter</td>
-<td>阻止在请求期间创建新的会话，保证无状态。</td>
-<td></td>
-</tr>
-<tr>
-<td>perms</td>
-<td>PermissionsAuthorizationFilter</td>
-<td>权限授权拦截器，验证用户是否拥有权限</td>
-<td>例子：/user/** = perms[“user:create”]</td>
-</tr>
-<tr>
-<td>port</td>
-<td>PortFilter</td>
-<td>端口拦截器</td>
-<td></td>
-</tr>
-<tr>
-<td>rest</td>
-<td>HttpMethodPermissionFilter</td>
-<td>rest 风格拦截器，根据请求的HttpMethod[POST、GET、Delete]进行拦截</td>
-<td></td>
-</tr>
-<tr>
-<td>roles</td>
-<td>RolesAuthorizationFilter</td>
-<td>角色授权拦截器，验证用户是否拥有所选角色</td>
-<td></td>
-</tr>
-<tr>
-<td>ssl</td>
-<td>SslFilter</td>
-<td>ssl拦截器 只有请求协议是https的才能通过，否则自动跳转到https端口</td>
-<td></td>
-</tr>
-<tr>
-<td>user</td>
-<td>UserFilter</td>
-<td>用户拦截器，用户已经身份认证/记住我的登录的都可以拦截</td>
-<td></td>
-</tr>
-</tbody></table>
-<p>web环境下 默认过滤器初始化的地方 DefaultFilterChainManager</p>
-<pre class=" language-java"><code class="language-java">    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">addDefaultFilters</span><span class="token punctuation">(</span><span class="token keyword">boolean</span> init<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        <span class="token keyword">for</span> <span class="token punctuation">(</span>DefaultFilter defaultFilter <span class="token operator">:</span> DefaultFilter<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token function">addFilter</span><span class="token punctuation">(</span>defaultFilter<span class="token punctuation">.</span><span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> defaultFilter<span class="token punctuation">.</span><span class="token function">newInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> init<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token punctuation">}</span>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">//  Collections.unmodifiableXXX方法不安全示例</span>
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">ImmutableTest</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        ArrayList<span class="token operator">&lt;</span>String<span class="token operator">></span> fruits <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Pear"</span><span class="token punctuation">,</span> <span class="token string">"Banana"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ImmutableList<span class="token operator">&lt;</span>String<span class="token operator">></span> immutableList <span class="token operator">=</span> ImmutableList<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> Collections<span class="token punctuation">.</span><span class="token function">unmodifiableList</span><span class="token punctuation">(</span>fruits<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        fruits<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"Orange"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>immutableList<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[Apple, Pear, Banana]</span>
+
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">//[Apple, Pear, Banana, Orange]</span>
     <span class="token punctuation">}</span></code></pre>
-<h2 id="shiro权限校验"><a href="#shiro权限校验" class="headerlink" title="shiro权限校验"></a>shiro权限校验</h2><ul>
-<li>使用perms 拦截器，对路径进行拦截，判断当前用户是否有权限</li>
-<li>使用shiro 注解的形式</li>
-<li>在页面使用shiro标签</li>
+<h3 id="怎样使用"><a href="#怎样使用" class="headerlink" title="怎样使用"></a>怎样使用</h3><ul>
+<li>使用 copyOf 方法,例如 ImmutableSet.copyOf(set)</li>
+<li>使用  of method,例如, ImmutableSet.of(“a”, “b”, “c”) or ImmutableMap.of(“a”, 1, “b”, 2)</li>
+<li>使用  Builder</li>
 </ul>
-<h2 id="shiro-permission-匹配规则"><a href="#shiro-permission-匹配规则" class="headerlink" title="shiro permission 匹配规则"></a>shiro permission 匹配规则</h2><p>– 这种情况通常会使用三个部件：域、操作、被付诸实施的实例。如：user:edit:manager<br>– 也可以使用通配符来定义，如：user:edit:<em>、user:</em>:<em>、user:</em>:manager<br>– 部分省略通配符：缺少的部件意味着用户可以访问所有与之匹配的值，比如：user:edit 等价于 user:edit :<em>、user 等价于 user:</em>:*<br>– 注意：通配符只能从字符串的结尾处省略部件，也就<br>是说 user:edit 并不等价于 user:*:edit</p>
-<h1 id="shiro-依赖"><a href="#shiro-依赖" class="headerlink" title="shiro 依赖"></a>shiro 依赖</h1><p>非web环境下，仅需要slf4j-api.jar和slf4j的绑定.jars之一。Web配置还需要commons-beanutils-core.jar。可以在需要时添加基于功能的依赖项（Ehcache缓存，基于Quartz的会话验证，Spring依赖项注入等）。</p>
+<pre class=" language-java"><code class="language-java">    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">ImmutableBuilderTest</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>Object<span class="token operator">></span> list <span class="token operator">=</span> ImmutableList<span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">"I"</span><span class="token punctuation">,</span> <span class="token string">"am"</span><span class="token punctuation">,</span> <span class="token string">"java"</span><span class="token punctuation">,</span> <span class="token string">"programer"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h3 id="ImmutableXXX-copyOf"><a href="#ImmutableXXX-copyOf" class="headerlink" title="ImmutableXXX.copyOf"></a>ImmutableXXX.copyOf</h3><p>ImmutableXXX.copyOf方法会尽可能的避免复制数据，例如如下代码：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">// “聪明”的copyof方法只返回视图</span>
+<span class="token comment" spellcheck="true">// 看源码 ImmutableSet 和Jdk hashSet数据结构不一样，ImmutableSet采用线性探测法，利用数组存储数据</span>
+ImmutableSet<span class="token operator">&lt;</span>String<span class="token operator">></span> foobar <span class="token operator">=</span> ImmutableSet<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"foo"</span><span class="token punctuation">,</span> <span class="token string">"bar"</span><span class="token punctuation">,</span> <span class="token string">"baz"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">thingamajig</span><span class="token punctuation">(</span>foobar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">thingamajig</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span>String<span class="token operator">></span> collection<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   ImmutableList<span class="token operator">&lt;</span>String<span class="token operator">></span> defensiveCopy <span class="token operator">=</span> ImmutableList<span class="token punctuation">.</span><span class="token function">copyOf</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token punctuation">}</span></code></pre>
+<p>源码分析：</p>
+<pre class=" language-java"><code class="language-java">  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token operator">&lt;</span>E<span class="token operator">></span> ImmutableList<span class="token operator">&lt;</span>E<span class="token operator">></span> <span class="token function">copyOf</span><span class="token punctuation">(</span>Collection<span class="token operator">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">E</span><span class="token operator">></span> elements<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment" spellcheck="true">// 如果是不可变集合类型，就尽可能的不去复制数据</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>elements <span class="token keyword">instanceof</span> <span class="token class-name">ImmutableCollection</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token annotation punctuation">@SuppressWarnings</span><span class="token punctuation">(</span><span class="token string">"unchecked"</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// all supported methods are covariant</span>
+      ImmutableList<span class="token operator">&lt;</span>E<span class="token operator">></span> list <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>ImmutableCollection<span class="token operator">&lt;</span>E<span class="token operator">></span><span class="token punctuation">)</span> elements<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment" spellcheck="true">// isPartialView是否是局部视图，决定copyof的实现是否应进行显式复制以避免内存泄漏。例如：</span>
+      <span class="token comment" spellcheck="true">//你有ImmutableList &lt;String> hugeList，并且执行了ImmutableList.copyOf（hugeList.subList（0，10）），则将执行显式复制，以避免意外按住引用不需要的hugeList中的引用。</span>
+      <span class="token keyword">return</span> list<span class="token punctuation">.</span><span class="token function">isPartialView</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">?</span> ImmutableList<span class="token punctuation">.</span>&lt;E<span class="token operator">></span><span class="token function">asImmutableList</span><span class="token punctuation">(</span>list<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">:</span> list<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">construct</span><span class="token punctuation">(</span>elements<span class="token punctuation">.</span><span class="token function">toArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span></code></pre>
+<h2 id="Lists"><a href="#Lists" class="headerlink" title="Lists"></a>Lists</h2><p>Lists主要提供了一系列的静态工厂方法创建List集合。</p>
+<ul>
+<li>Lists.newArrayList()</li>
+<li>Lists.newArrayList(E… elements)</li>
+<li>Lists.newArrayListWithCapacity(int initialArraySize)</li>
+<li>Lists.newLinkedList()</li>
+<li>Lists.newLinkedList(Iterable&lt;? extends E&gt; elements)</li>
+<li>Lists.newCopyOnWriteArrayList()</li>
+<li>Lists.newCopyOnWriteArrayList(Iterable&lt;? extends E&gt; elements)</li>
+<li>Lists.asList(@Nullable E first, E[] rest)</li>
+<li>Lists.asList(@Nullable E first, @Nullable E second, E[] rest)</li>
+<li>Lists.cartesianProduct(List&lt;? extends List&lt;? extends B&gt;&gt; lists) //求笛卡尔积</li>
+<li>Lists.cartesianProduct(List… lists) //求笛卡尔积</li>
+<li>Lists.transform(List<F> fromList, Function&lt;? super F, ? extends T&gt; function) //转换</li>
+<li>Lists.partition(List<T> list, int size) //按size分区</li>
+<li>Lists.reverse(List<T> list) //倒序</li>
+</ul>
+<p>示例</p>
+<pre class=" language-java"><code class="language-java">   <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testAsList</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> list <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">asList</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">{</span><span class="token string">"Hello"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testOfList</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> lsit <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">,</span><span class="token string">"Guava"</span><span class="token punctuation">,</span><span class="token string">"Good"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ArrayList<span class="token operator">&lt;</span>Object<span class="token operator">></span> lust <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayListWithExpectedSize</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> transform <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">transform</span><span class="token punctuation">(</span>lsit<span class="token punctuation">,</span> <span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> element<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        System<span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>transform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testCartesianProduct</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> lsit <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"China"</span><span class="token punctuation">,</span><span class="token string">"Guava"</span><span class="token punctuation">,</span><span class="token string">"Good"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        List<span class="token operator">&lt;</span>String<span class="token operator">></span> lsit2 <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span><span class="token string">"Hello"</span><span class="token punctuation">,</span><span class="token string">"Nice"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment" spellcheck="true">//[[China, Hello], [China, Nice], [Guava, Hello], [Guava, Nice], [Good, Hello], [Good, Nice]]</span>
+        List<span class="token operator">&lt;</span>List<span class="token operator">&lt;</span>String<span class="token operator">>></span> lists <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">cartesianProduct</span><span class="token punctuation">(</span>lsit<span class="token punctuation">,</span> lsit2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<h2 id="Sets"><a href="#Sets" class="headerlink" title="Sets"></a>Sets</h2><p>Sets工具类提供了创建各式各样Set集合的工厂方法</p>
+<ul>
+<li>Sets.newHashSet();</li>
+<li>Sets.newHashSet(E… elements) ;</li>
+<li>Sets.newConcurrentHashSet();</li>
+<li>Sets.newCopyOnWriteArraySet();</li>
+<li>Sets.newLinkedHashSet();</li>
+<li>Sets.newEnumSet();</li>
+<li>Sets.newTreeSet();</li>
+</ul>
+<p>示例：</p>
+<pre class=" language-java"><code class="language-java"><span class="token comment" spellcheck="true">/**
+ * 测试EnumSet
+ */</span>
+<span class="token annotation punctuation">@Test</span>
+    <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testEnumSet</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        List<span class="token operator">&lt;</span>Fruit<span class="token operator">></span> fruits <span class="token operator">=</span> Lists<span class="token punctuation">.</span><span class="token function">newArrayList</span><span class="token punctuation">(</span>Apple<span class="token punctuation">,</span> Orange<span class="token punctuation">,</span> Pear<span class="token punctuation">,</span>Apple<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        EnumSet<span class="token operator">&lt;</span>Fruit<span class="token operator">></span> enumSet <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">newEnumSet</span><span class="token punctuation">(</span>fruits<span class="token punctuation">,</span> Fruit<span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Assert<span class="token punctuation">.</span><span class="token function">assertEquals</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span>enumSet<span class="token punctuation">.</span><span class="token function">size</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre>
+<ul>
+<li>Sets.intersection（）// 求交集</li>
+<li>Sets.difference（final Set<E> set1, final Set&lt;?&gt; set2）//set1 有set2 没有的元素</li>
+<li>Sets.union（）// 全集</li>
+<li>Sets.symmetricDifference（ final Set&lt;? extends E&gt; set1, final Set&lt;? extends E&gt; set2）// 差集</li>
+</ul>
+<pre class=" language-java"><code class="language-java">Sets<span class="token punctuation">.</span>SetView<span class="token operator">&lt;</span>String<span class="token operator">></span> intersection <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">intersection</span><span class="token punctuation">(</span>primes<span class="token punctuation">,</span> wordsWithPrimeLength<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// contains "two", "three", "seven"</span>
+Sets<span class="token punctuation">.</span>SetView<span class="token operator">&lt;</span>String<span class="token operator">></span> difference <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">difference</span><span class="token punctuation">(</span>wordsWithPrimeLength<span class="token punctuation">,</span> primes<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// A有B没有的 [one, six, eight]</span>
+Sets<span class="token punctuation">.</span>SetView<span class="token operator">&lt;</span>String<span class="token operator">></span> union <span class="token operator">=</span> Sets<span class="token punctuation">.</span><span class="token function">union</span><span class="token punctuation">(</span>wordsWithPrimeLength<span class="token punctuation">,</span> primes<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// [one, two, three, six, seven, eight, five]</span></code></pre>
+<h2 id="Maps"><a href="#Maps" class="headerlink" title="Maps"></a>Maps</h2><p>提供Map的创建的工厂方法，诸如 </p>
+<ul>
+<li>HashMap</li>
+<li>LinkedHashMap </li>
+<li>newConcurrentMap</li>
+<li>newTreeMap</li>
+<li>EnumMap</li>
+</ul>
+<p>其它API ：求差集</p>
+<pre class=" language-java"><code class="language-java">        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> left <span class="token operator">=</span> ImmutableMap<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Map<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> right <span class="token operator">=</span> ImmutableMap<span class="token punctuation">.</span><span class="token function">of</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">"d"</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        MapDifference<span class="token operator">&lt;</span>String<span class="token punctuation">,</span> Integer<span class="token operator">></span> diff <span class="token operator">=</span> Maps<span class="token punctuation">.</span><span class="token function">difference</span><span class="token punctuation">(</span>left<span class="token punctuation">,</span> right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment" spellcheck="true">//        map1和map2的交集，key，value都相同</span>
+        diff<span class="token punctuation">.</span><span class="token function">entriesInCommon</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"b" => 2}</span>
+<span class="token comment" spellcheck="true">//        key值相同，但是value值不相同</span>
+        diff<span class="token punctuation">.</span><span class="token function">entriesDiffering</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"c" => (3, 4)}</span>
+<span class="token comment" spellcheck="true">//       key存在于left但是不在right中的</span>
+        diff<span class="token punctuation">.</span><span class="token function">entriesOnlyOnLeft</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"a" => 1}</span>
+<span class="token comment" spellcheck="true">//        key存在于right但是不在中的left</span>
+        diff<span class="token punctuation">.</span><span class="token function">entriesOnlyOnRight</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// {"d" => 5}</span></code></pre>
+<p>参考资料<br><a href="https://guava.dev/releases/snapshot/api/docs/" target="_blank" rel="noopener">官方API</a></p>
 
             </div>
             <hr/>
@@ -626,7 +647,7 @@ Authorization: 权限验">
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2019/12/19/shiro-ji-chu/">http://evanzhou666.com/2019/12/19/shiro-ji-chu/</a>
+                    <a href="http://evanzhou666.com/2020/01/27/guava-p-d-r-k/">http://evanzhou666.com/2020/01/27/guava-p-d-r-k/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -664,8 +685,8 @@ Authorization: 权限验">
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/shiro/">
-                                    <span class="chip bg-color">shiro</span>
+                                <a href="/tags/Guava/">
+                                    <span class="chip bg-color">Guava</span>
                                 </a>
                             
                         </div>
@@ -835,31 +856,36 @@ Authorization: 权限验">
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2019/12/19/web-ying-yong-ren-zheng-gai-shu/">
+                <a href="/2020/02/06/springboot-f-https/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="web应用认证概述">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="sprigboot如何配置https">
                         
-                        <span class="card-title">web应用认证概述</span>
+                        <span class="card-title">sprigboot如何配置https</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            1 常见的认证方式1.1 Http Basic Auth每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再
+                            为springboot项目配置https分为两大步
+
+首先得拥有ssl证书，这里我们使用keytool工具生成，仅限开发测试环境
+在springboot项目中配置ssl
+
+Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-02-06
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/shiro/" class="post-category">
-                                    shiro
+                            <a href="/categories/https/" class="post-category">
+                                    https
                                 </a>
                             
                             
@@ -869,8 +895,16 @@ Authorization: 权限验">
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/shiro/">
-                        <span class="chip bg-color">shiro</span>
+                    <a href="/tags/https/">
+                        <span class="chip bg-color">https</span>
+                    </a>
+                    
+                    <a href="/tags/ssl/">
+                        <span class="chip bg-color">ssl</span>
+                    </a>
+                    
+                    <a href="/tags/sringboot/">
+                        <span class="chip bg-color">sringboot</span>
                     </a>
                     
                 </div>
@@ -884,34 +918,31 @@ Authorization: 权限验">
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/11/20/elasticsearch-aggregations/">
+                <a href="/2020/01/16/guava-gi-gy-ohash/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="elasticsearch-aggregations">
+                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="Guava使用（二）哈希">
                         
-                        <span class="card-title">elasticsearch-aggregations</span>
+                        <span class="card-title">Guava使用（二）哈希</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            指标聚合Metrics Aggregations指标聚合分为单值聚合和多值聚合。
-单值聚合只返回一个指标
-avg Aggregation求平均值
-Cardinality Aggregation求基数，统计某个字段有多少个不同值。该值只是近似
+                            Guava包为什么要提供hashjava内置的hashcode算法被限制为32位的，而且算法与数据之间耦合严重，无法进行算法的替换。虽然JDK内置的hashcode算法快，但是碰撞严重在简单的散列表中可以通过再hash解决这个问题，但是gu
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2019-11-20
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-16
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/elasticsearch/" class="post-category">
-                                    elasticsearch
+                            <a href="/categories/Guava/" class="post-category">
+                                    Guava
                                 </a>
                             
                             
@@ -921,8 +952,8 @@ Cardinality Aggregation求基数，统计某个字段有多少个不同值。该
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/elasticsearch/">
-                        <span class="chip bg-color">elasticsearch</span>
+                    <a href="/tags/Guava/">
+                        <span class="chip bg-color">Guava</span>
                     </a>
                     
                 </div>

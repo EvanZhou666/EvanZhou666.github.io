@@ -4,13 +4,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="sprigboot如何配置https, EvanZhou">
-    <meta name="description" content="为springboot项目配置https分为两大步
-
-首先得拥有ssl证书，这里我们使用keytool工具生成，仅限开发测试环境
-在springboot项目中配置ssl
-
-Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
+    <meta name="keywords" content="web应用认证概述, EvanZhou">
+    <meta name="description" content="1 常见的认证方式1.1 Http Basic Auth每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -18,7 +13,7 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>sprigboot如何配置https | EvanZhou</title>
+    <title>web应用认证概述 | EvanZhou</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -308,13 +303,13 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/14.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
                     <div class="description center-align post-title">
-                        sprigboot如何配置https
+                        web应用认证概述
                     </div>
                 </div>
             </div>
@@ -426,16 +421,8 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/https/">
-                                <span class="chip bg-color">https</span>
-                            </a>
-                        
-                            <a href="/tags/ssl/">
-                                <span class="chip bg-color">ssl</span>
-                            </a>
-                        
-                            <a href="/tags/sringboot/">
-                                <span class="chip bg-color">sringboot</span>
+                            <a href="/tags/shiro/">
+                                <span class="chip bg-color">shiro</span>
                             </a>
                         
                     </div>
@@ -446,8 +433,8 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/https/" class="post-category">
-                                https
+                            <a href="/categories/shiro/" class="post-category">
+                                shiro
                             </a>
                         
                     </div>
@@ -459,7 +446,7 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-02-06
+                    2019-12-19
                 </div>
                 
 
@@ -468,14 +455,14 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.5k
+                    800
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    6 分
+                    2 分
                 </div>
                 
 				
@@ -491,156 +478,24 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke">
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>为springboot项目配置https分为两大步</p>
+                <h1 id="1-常见的认证方式"><a href="#1-常见的认证方式" class="headerlink" title="1 常见的认证方式"></a>1 常见的认证方式</h1><h2 id="1-1-Http-Basic-Auth"><a href="#1-1-Http-Basic-Auth" class="headerlink" title="1.1 Http Basic Auth"></a>1.1 Http Basic Auth</h2><p>每次请求都提供用户的用户名和密码。简单说 Basic Auth是配合Restful API 使用的最简单的认证方式，只需提供用户名密码即可，但是存在把用户名暴露给第三方客户端的风险，再生产环境中避免使用。</p>
+<h2 id="1-2-Cookie-Auth"><a href="#1-2-Cookie-Auth" class="headerlink" title="1.2 Cookie Auth"></a>1.2 Cookie Auth</h2><p>Cookie认证机制就是为一次请求认证在服务端创建一个session对象，同时在客户端创建一个cookie对象，通过客户端提交的cookie对象与服务端的session对象匹配来实现状态的管理，默认的，当我们关闭浏览器的时候，cookie会被删除，但是可以通过修改cookie的过期时间在一定时间内有效。<br><strong>弊端</strong>：</p>
 <ul>
-<li>首先得拥有ssl证书，这里我们使用keytool工具生成，仅限开发测试环境</li>
-<li>在springboot项目中配置ssl</li>
+<li>某些移动端可能不存在cookie（比如微信小程序）</li>
+<li>cookie存在跨域问题（在微服务之间端口不一样，或存在跨域问题。）<h2 id="1-3-OAuth"><a href="#1-3-OAuth" class="headerlink" title="1.3 OAuth"></a>1.3 OAuth</h2>OAuth（开放授权）是一个开放的授权标准，允许第三方应用访问在某一web服务器上存储的私密资源，而无需将用户名和密码提供给第三方软件。OAuth允许用户提供一个令牌，每一个令牌授权一个特定的第三方系统，通过这个令牌访问存在特定服务器上的资源。<br><img src="https://img-blog.csdnimg.cn/2019121519130361.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2NzE5NDQ5,size_16,color_FFFFFF,t_70" alt="OAuth协议认证流程"><h2 id="1-4-Token-Auth"><a href="#1-4-Token-Auth" class="headerlink" title="1.4 Token Auth"></a>1.4 Token Auth</h2>Http Basic Auth的演化版本，每次请求服务端带上token标志，后台服务校验这个token是否合法，从而决定客户端是否可以访问后台资源。无状态</li>
 </ul>
-<p>Keytool是与JDK一起提供的证书管理实用程序，因此需要安装keytool。要检查它，请尝试从终端提示符下运行命令keytool –help。请注意，如果您使用的是Windows，则可能需要从\ bin文件夹中启动它。</p>
-<h2 id="生成self-signed-ssl证书"><a href="#生成self-signed-ssl证书" class="headerlink" title="生成self-signed ssl证书"></a>生成self-signed ssl证书</h2><p><a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/keytool.html#keytool_option_genkeypair" target="_blank" rel="noopener">keytool documentation </a> 把keystore定义为“加密密钥、X.509证书链和可信证书”的数据库。</p>
-<p>密钥库使用的两种最常见的格式是JKS（专用于Java的专有格式）和PKCS12（行业标准格式）。JKS曾经是默认选择，但现在Oracle建议采用PKCS12格式。我们将看看如何同时使用两者。</p>
-<h3 id="在密钥库中生成SSL证书"><a href="#在密钥库中生成SSL证书" class="headerlink" title="在密钥库中生成SSL证书"></a>在密钥库中生成SSL证书</h3><p>1.打开终端，创建JKS keystore</p>
-<pre class=" language-java"><code class="language-java">keytool <span class="token operator">-</span>genkeypair <span class="token operator">-</span>alias tomcat <span class="token operator">-</span>keyalg RSA <span class="token operator">-</span>keysize <span class="token number">2048</span> <span class="token operator">-</span>keystore keystore<span class="token punctuation">.</span>jks <span class="token operator">-</span>validity <span class="token number">3650</span> <span class="token operator">-</span>storepass password</code></pre>
-<p>或者创建PKCS12 keystore</p>
-<pre class=" language-java"><code class="language-java">keytool <span class="token operator">-</span>genkeypair <span class="token operator">-</span>alias tomcat <span class="token operator">-</span>keyalg RSA <span class="token operator">-</span>keysize <span class="token number">2048</span> <span class="token operator">-</span>storetype PKCS12 <span class="token operator">-</span>keystore keystore<span class="token punctuation">.</span>p12 <span class="token operator">-</span>validity <span class="token number">3650</span> <span class="token operator">-</span>storepass password</code></pre>
-<h3 id="keytool命令参数说明"><a href="#keytool命令参数说明" class="headerlink" title="keytool命令参数说明"></a>keytool命令参数说明</h3><ul>
-<li>genkeypair: generates a key pair;</li>
-<li>alias: the alias name for the item we are generating;</li>
-<li>keyalg: the cryptographic algorithm to generate the key pair;</li>
-<li>keysize: the size of the key. We have used 2048 bits, but 4096 would be a better choice for production;</li>
-<li>storetype: the type of keystore;</li>
-<li>keystore: the name of the keystore;</li>
-<li>validity: validity number of days;</li>
-<li>storepass: a password for the keystore.</li>
-</ul>
-<p>当运行前一个命令时，将要求我们输入一些信息，但是我们可以自由地跳过所有信息（只需按Return键即可跳过一个选项）。当被问及信息是否正确时，我们应该输入是。最后，我们按回车键也将密钥库密码用作密钥密码</p>
-<pre><code>What is your first and last name? 
-    [Unknown]: 
-What is the name of your organizational unit? 
-    [Unknown]: 
-What is the name of your organization? 
-    [Unknown]: 
-What is the name of your City or Locality? 
-    [Unknown]: 
-What is the name of your State or Province? 
-    [Unknown]: 
-What is the two-letter country code for this unit? 
-    [Unknown]: 
-Is CN=localhost, OU=Unknown, O=Unknown, L=Unknown, ST=Unknown, C=Unknown correct? 
-    [no]: yes 
-
-Enter key password for &lt;tomcat&gt; 
-    (RETURN if same as keystore password):</code></pre><h3 id="验证密钥库内容"><a href="#验证密钥库内容" class="headerlink" title="验证密钥库内容"></a>验证密钥库内容</h3><p> JKS 格式</p>
-<pre class=" language-shell"><code class="language-shell">keytool -list -v -keystore keystore.jks</code></pre>
-<p>PKCS12格式</p>
-<pre class=" language-shell"><code class="language-shell">keytool -list -v -storetype pkcs12 -keystore keystore.p125</code></pre>
-<p>假如我们有了JKS keystore，我们可以选择将其转换为PKCS12<br>将JKS密钥库转换为PKCS12</p>
-<pre class=" language-shell"><code class="language-shell">keytool -importkeystore -srckeystore keystore.jks -destkeystore keystore.p12 -deststoretype pkcs12</code></pre>
-<h3 id="使用已经存在的证书"><a href="#使用已经存在的证书" class="headerlink" title="使用已经存在的证书"></a>使用已经存在的证书</h3><p>如果我们已经获得了SSL证书，则可以将其导入密钥库，并使用它在Spring Boot应用程序中启用HTTPS。</p>
-<pre class=" language-shell"><code class="language-shell">keytool -import -alias tomcat -file myCertificate.crt -keystore keystore.p12 -storepass password</code></pre>
-<h2 id="在springboot中配置https"><a href="#在springboot中配置https" class="headerlink" title="在springboot中配置https"></a>在springboot中配置https</h2><p><strong>首先我们需要导入keystore到项目resource文件夹或者是根目录</strong></p>
-<h3 id="在springboot1-x中开启Https"><a href="#在springboot1-x中开启Https" class="headerlink" title="在springboot1.x中开启Https"></a>在springboot1.x中开启Https</h3><p>application.properties </p>
-<pre><code>server.port=8443
-server.ssl.key-store-type=PKCS12
-server.ssl.key-store=classpath:keystore.p12
-server.ssl.key-store-password=password
-server.ssl.key-alias=tomcat
-security.require-ssl=true</code></pre><h3 id="在springboot2-x中开启Https"><a href="#在springboot2-x中开启Https" class="headerlink" title="在springboot2.x中开启Https"></a>在springboot2.x中开启Https</h3><pre class=" language-yml"><code class="language-yml">server:
-  ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: password
-    key-store-type: pkcs12
-    key-alias: tomcat
-    key-password: password
-  port: 8443</code></pre>
-<h3 id="在springboot中开启配置SSL"><a href="#在springboot中开启配置SSL" class="headerlink" title="在springboot中开启配置SSL"></a>在springboot中开启配置SSL</h3><p>springboot application properties的ssl配置项</p>
+<p><strong>基于Token Auth的好处</strong></p>
 <ul>
-<li>server.port: the port on which the server is listening. We have used 8443 rather than the default 8080 port.</li>
-<li>server.ssl.key-store: the path to the key store that contains the SSL certificate. In our example, we want Spring Boot to look for it in the classpath.</li>
-<li>server.ssl.key-store-password: the password used to access the key store.</li>
-<li>server.ssl.key-store-type: the type of the key store (JKS or PKCS12).</li>
-<li>server.ssl.key-alias: the alias that identifies the key in the key store.</li>
-<li>server.ssl.key-password: the password used to access the key in the key store.</li>
+<li>支持跨域访问：cookie不允许跨域访问，token不存在这个问题。一般将token信息设置在http请求头里</li>
+<li>无状态，服务端可自行扩展，token机制在服务端不需要存储session，因而无需解决session共享问题。</li>
+<li>更适合用CDN：跨域通过内容分发网络请求你服务端的所有资料，你的服务端只需要提供API即可</li>
+<li>去耦：不需要绑定一个特定的身份认证方案</li>
+<li>更适合原生应用：当你的客户端是一个原生平台（IOS,Android，Window8），cookie不被支持，你需要通过cookie容器解决</li>
+<li>CSRF： 因为不在依赖cookie，所以不需要考虑跨站请求伪造问题。</li>
+<li>可以做到标准化，例如jwt（json web token） </li>
 </ul>
-<p>为了自动阻挡非https请求，我们使用Spring Security进行配置。<br>在springboot1.x 设置security.require-ssl 属性为true<br>在springboot2.x 需继承WebSecurityConfigurerAdapter ，因为security.require-ssl已经过期了</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@EnableWebSecurity</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SecurityConfig</span> <span class="token keyword">extends</span> <span class="token class-name">WebSecurityConfigurerAdapter</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Override</span>
-    <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">configure</span><span class="token punctuation">(</span>HttpSecurity http<span class="token punctuation">)</span> <span class="token keyword">throws</span> Exception <span class="token punctuation">{</span>
-        http
-            <span class="token punctuation">.</span><span class="token function">requiresChannel</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">anyRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-            <span class="token punctuation">.</span><span class="token function">requiresSecure</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p>更多SSl配置参考<a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-configure-ssl" target="_blank" rel="noopener">https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#howto-configure-ssl</a></p>
-<h3 id="Http请求重定向到Https"><a href="#Http请求重定向到Https" class="headerlink" title="Http请求重定向到Https"></a>Http请求重定向到Https</h3><p>Spring允许在application.properties（或application.yml）中仅定义一个网络连接器。由于我们已将其用于HTTPS，因此必须以编程方式为Tomcat Web服务器设置HTTP连接器。Spring Boot 1和Spring Boot 2的实现几乎相同。唯一的区别是在Spring Boot 2中已重命名了一些用于服务器配置的类。<br>Configuring Tomcat for Spring Boot 1</p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServerConfig</span> <span class="token punctuation">{</span>
-
-  <span class="token annotation punctuation">@Bean</span>
-  <span class="token keyword">public</span> EmbeddedServletContainerFactory <span class="token function">servletContainer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    TomcatEmbeddedServletContainerFactory tomcat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TomcatEmbeddedServletContainerFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-      <span class="token annotation punctuation">@Override</span>
-      <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">postProcessContext</span><span class="token punctuation">(</span>Context context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        SecurityConstraint securityConstraint <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecurityConstraint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        securityConstraint<span class="token punctuation">.</span><span class="token function">setUserConstraint</span><span class="token punctuation">(</span><span class="token string">"CONFIDENTIAL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        SecurityCollection collection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecurityCollection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        collection<span class="token punctuation">.</span><span class="token function">addPattern</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        securityConstraint<span class="token punctuation">.</span><span class="token function">addCollection</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        context<span class="token punctuation">.</span><span class="token function">addConstraint</span><span class="token punctuation">(</span>securityConstraint<span class="token punctuation">)</span><span class="token punctuation">;</span>
-      <span class="token punctuation">}</span>
-    <span class="token punctuation">}</span><span class="token punctuation">;</span>
-    tomcat<span class="token punctuation">.</span><span class="token function">addAdditionalTomcatConnectors</span><span class="token punctuation">(</span><span class="token function">getHttpConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> tomcat<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-
-  <span class="token keyword">private</span> Connector <span class="token function">getHttpConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    Connector connector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Connector</span><span class="token punctuation">(</span><span class="token string">"org.apache.coyote.http11.Http11NioProtocol"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    connector<span class="token punctuation">.</span><span class="token function">setScheme</span><span class="token punctuation">(</span><span class="token string">"http"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    connector<span class="token punctuation">.</span><span class="token function">setPort</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    connector<span class="token punctuation">.</span><span class="token function">setSecure</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    connector<span class="token punctuation">.</span><span class="token function">setRedirectPort</span><span class="token punctuation">(</span><span class="token number">8443</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">return</span> connector<span class="token punctuation">;</span>
-  <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<p><strong>Configuring Tomcat for Spring Boot 2</strong></p>
-<pre class=" language-java"><code class="language-java"><span class="token annotation punctuation">@Configuration</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ServerConfig</span> <span class="token punctuation">{</span>
-
-    <span class="token annotation punctuation">@Bean</span>
-    <span class="token keyword">public</span> ServletWebServerFactory <span class="token function">servletContainer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        TomcatServletWebServerFactory tomcat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TomcatServletWebServerFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-            <span class="token annotation punctuation">@Override</span>
-            <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">postProcessContext</span><span class="token punctuation">(</span>Context context<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-                SecurityConstraint securityConstraint <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecurityConstraint</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                securityConstraint<span class="token punctuation">.</span><span class="token function">setUserConstraint</span><span class="token punctuation">(</span><span class="token string">"CONFIDENTIAL"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                SecurityCollection collection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SecurityCollection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                collection<span class="token punctuation">.</span><span class="token function">addPattern</span><span class="token punctuation">(</span><span class="token string">"/*"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-                securityConstraint<span class="token punctuation">.</span><span class="token function">addCollection</span><span class="token punctuation">(</span>collection<span class="token punctuation">)</span><span class="token punctuation">;</span>
-                context<span class="token punctuation">.</span><span class="token function">addConstraint</span><span class="token punctuation">(</span>securityConstraint<span class="token punctuation">)</span><span class="token punctuation">;</span>
-            <span class="token punctuation">}</span>
-        <span class="token punctuation">}</span><span class="token punctuation">;</span>
-        tomcat<span class="token punctuation">.</span><span class="token function">addAdditionalTomcatConnectors</span><span class="token punctuation">(</span><span class="token function">getHttpConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> tomcat<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-
-    <span class="token keyword">private</span> Connector <span class="token function">getHttpConnector</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-        Connector connector <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Connector</span><span class="token punctuation">(</span>TomcatServletWebServerFactory<span class="token punctuation">.</span>DEFAULT_PROTOCOL<span class="token punctuation">)</span><span class="token punctuation">;</span>
-        connector<span class="token punctuation">.</span><span class="token function">setScheme</span><span class="token punctuation">(</span><span class="token string">"http"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        connector<span class="token punctuation">.</span><span class="token function">setPort</span><span class="token punctuation">(</span><span class="token number">8080</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        connector<span class="token punctuation">.</span><span class="token function">setSecure</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        connector<span class="token punctuation">.</span><span class="token function">setRedirectPort</span><span class="token punctuation">(</span><span class="token number">8443</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-        <span class="token keyword">return</span> connector<span class="token punctuation">;</span>
-    <span class="token punctuation">}</span>
-<span class="token punctuation">}</span></code></pre>
-<h2 id="将SSL证书分发给客户端"><a href="#将SSL证书分发给客户端" class="headerlink" title="将SSL证书分发给客户端"></a>将SSL证书分发给客户端</h2><p>使用自签名SSL证书时，我们的浏览器将不信任我们的应用程序，并会警告用户它不安全。其他客户端也一样。<br>因为我们的证书存储在keystore中，我们需要提取它。</p>
-<pre class=" language-java"><code class="language-java">keytool <span class="token operator">-</span>export <span class="token operator">-</span>keystore keystore<span class="token punctuation">.</span>jks <span class="token operator">-</span>alias tomcat <span class="token operator">-</span>file myCertificate<span class="token punctuation">.</span>crt</code></pre>
-<p>密钥库可以采用JKS或PKCS12格式。在执行此命令期间，keytool将要求我们提供在本教程开始时设置的密钥库密码（非常安全的密码）。<br>为了使JRE信任我们的证书，我们需要将其导入cacerts中：JRE信任存储区负责保存所有可以信任的证书。</p>
-<pre class=" language-shell"><code class="language-shell">keytool -importcert -file myCertificate.crt -alias tomcat -keystore $JDK_HOME/jre/lib/security/cacerts</code></pre>
-<p>执行过程中需要输入keystore的密码，如果你没有改过默认的密码是changeit或changeme（不同的操作系统不一样），keytool会询问是否信任该证书，我们输入yes</p>
-<p>使用自制的浏览器时，会提示ssl证书不可信，如何使浏览器信任证书参考<a href="https://www.jianshu.com/p/35c31b865bb9" target="_blank" rel="noopener">https://www.jianshu.com/p/35c31b865bb9</a><br>参考资料：<br>[SSL证书生成] (<a href="https://github.com/X-rapido/CAS_SSO_Record/blob/master/SSL%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90.md" target="_blank" rel="noopener">https://github.com/X-rapido/CAS_SSO_Record/blob/master/SSL%E8%AF%81%E4%B9%A6%E7%94%9F%E6%88%90.md</a>)</p>
+<h1 id="2-有状态服务和无状态服务"><a href="#2-有状态服务和无状态服务" class="headerlink" title="2 有状态服务和无状态服务"></a>2 有状态服务和无状态服务</h1><h2 id="2-1-有状态服务"><a href="#2-1-有状态服务" class="headerlink" title="2.1 有状态服务"></a>2.1 有状态服务</h2><p>有状态服务：服务端会存储请求上下文相关的数据，先后的请求可能是有关联的。例如，传统web应用中，使用session维护已登录用户的数据。客户端（浏览器）存储jsession数据，在提交请求后，找到次jsessionid 对应的session数据。虽然http是无状态的，但是借助session可以使http服务装换为有状态的。</p>
+<h2 id="2-2-无状态服务"><a href="#2-2-无状态服务" class="headerlink" title="2.2 无状态服务"></a>2.2 无状态服务</h2><p>无状态服务：本次请求不依赖于之前的请求，本次请求的数据全部包含在该次请求中。例如，基于token的验证方式，不需要sesession维持会话数据。</p>
 
             </div>
             <hr/>
@@ -666,7 +521,7 @@ security.require-ssl=true</code></pre><h3 id="在springboot2-x中开启Https"><a
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://evanzhou666.com/2020/02/06/springboot-pei-zhi-https/">http://evanzhou666.com/2020/02/06/springboot-pei-zhi-https/</a>
+                    <a href="http://evanzhou666.com/2019/12/19/web-zh-d-u/">http://evanzhou666.com/2019/12/19/web-zh-d-u/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -704,16 +559,8 @@ security.require-ssl=true</code></pre><h3 id="在springboot2-x中开启Https"><a
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/https/">
-                                    <span class="chip bg-color">https</span>
-                                </a>
-                            
-                                <a href="/tags/ssl/">
-                                    <span class="chip bg-color">ssl</span>
-                                </a>
-                            
-                                <a href="/tags/sringboot/">
-                                    <span class="chip bg-color">sringboot</span>
+                                <a href="/tags/shiro/">
+                                    <span class="chip bg-color">shiro</span>
                                 </a>
                             
                         </div>
@@ -879,61 +726,51 @@ security.require-ssl=true</code></pre><h3 id="在springboot2-x中开启Https"><a
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/02/06/springboot-pei-zhi-https/">
+                <a href="/2019/12/29/springboot-shiro-t-t-yo-z-z/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/14.jpg" class="responsive-img" alt="sprigboot如何配置https">
+                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="整合shiro问题--数据库事务失效">
                         
-                        <span class="card-title">sprigboot如何配置https</span>
+                        <span class="card-title">整合shiro问题--数据库事务失效</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            为springboot项目配置https分为两大步
+                            spring事务管理spring事务管理支持两种类型。一种是编程式的事务类型，另外一种是声明式的事务类型。但是无论哪一种底层都采用spring事务管理器进行统一管理。spring事务管理介绍我之前写的还算比较详细：spring事务管理介绍
 
-首先得拥有ssl证书，这里我们使用keytool工具生成，仅限开发测试环境
-在springboot项目中配置ssl
-
-Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-02-06
-                            </span>
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2019-12-29
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/https/" class="post-category">
-                                    https
+                            <a href="/categories/shiro/" class="post-category">
+                                    shiro
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/https/">
-                        <span class="chip bg-color">https</span>
+                    <a href="/tags/shiro/">
+                        <span class="chip bg-color">shiro</span>
                     </a>
                     
-                    <a href="/tags/ssl/">
-                        <span class="chip bg-color">ssl</span>
-                    </a>
-                    
-                    <a href="/tags/sringboot/">
-                        <span class="chip bg-color">sringboot</span>
+                    <a href="/tags/spring%E4%BA%8B%E5%8A%A1/">
+                        <span class="chip bg-color">spring事务</span>
                     </a>
                     
                 </div>
@@ -947,33 +784,34 @@ Keytool是与JDK一起提供的证书管理实用程序，因此需要安装ke
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/01/27/guava-ji-he-er-gong-ju-lei-pian/">
+                <a href="/2019/12/19/shiro-b/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Guava集合(二)工具类篇">
+                        <img src="/medias/featureimages/23.jpg" class="responsive-img" alt="shiro基础">
                         
-                        <span class="card-title">Guava集合(二)工具类篇</span>
+                        <span class="card-title">shiro基础</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            Immutablexxx 不可变集合JDK 提供了Collections.unmodifiableXXX方法，为什么guava还有提供不可变方法。根据官网的描述我认为最大的原因有两个:
+                            shiro 架构
 
-jdk提供的不可变集合方法是不安全的，如果原有集合的
+Authentication: 身份认证/登录，是一个可扩展点，可以自定义实现；可以使用认证 策略（Authentication Strategy），即什么情况下算用户认证通过了； 
+Authorization: 权限验
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-01-27
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-12-19
                             </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/Guava/" class="post-category">
-                                    Guava
+                            <a href="/categories/shiro/" class="post-category">
+                                    shiro
                                 </a>
                             
                             
@@ -983,8 +821,8 @@ jdk提供的不可变集合方法是不安全的，如果原有集合的
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Guava/">
-                        <span class="chip bg-color">Guava</span>
+                    <a href="/tags/shiro/">
+                        <span class="chip bg-color">shiro</span>
                     </a>
                     
                 </div>
